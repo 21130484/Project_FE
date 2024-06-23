@@ -1,6 +1,8 @@
 // src/App.tsx
 import React from 'react';
 import './App.css';
+import Header from './Header';
+import Footer from './Footer';
 import ArticleDetail from './ArticleDetail';
 
 const App: React.FC = () => {
@@ -12,11 +14,15 @@ const App: React.FC = () => {
 
     return (
         <div className="App">
-            <ArticleDetail
-                title={article.title}
-                content={article.content}
-                author={article.author}
-            />
+            <Header />
+            <main className="main-content">
+                <ArticleDetail
+                    title={article.title}
+                    content={article.content}
+                    author={article.author}
+                />
+            </main>
+            <Footer />
         </div>
     );
 };
