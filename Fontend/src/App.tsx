@@ -1,8 +1,8 @@
 // src/App.tsx
 import React from 'react';
-import './App.css';
-import Header from './Header';
-import Footer from './Footer';
+import './css/App.css';
+import Header from './component/Header';
+import Footer from './component/Footer';
 import ArticleDetail from './ArticleDetail';
 
 const App: React.FC = () => {

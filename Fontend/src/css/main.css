@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style-type: none;
+  font-family: Inter;
+  color: #454545;
+  font-size: 14px;
+  line-height: 150%;
+}
+
+.container {
+  margin: 0 auto;
+  width: 1200px;
+  max-width: 100%;
+}
+
+/*# sourceMappingURL=main.css.map */
