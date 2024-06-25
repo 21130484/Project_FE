@@ -1,0 +1,230 @@
+.header-container{
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    max-width: 100%;
+    width: 1232px;
+}
+
+.header__top-flex {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ebebeb;
+    border-top: 1px solid #ebebeb;
+    padding: 7px 0;
+}
+
+.header__top-hl .text {
+    color: var(--text-color);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    font-family: 'Roboto', sans-serif;
+}
+.header__top-hl .text.under {
+    text-decoration-line: underline;
+}
+.header__top-list {
+    flex: 1;
+    display: flex;
+    margin-left: 4px;
+}
+.header__top-list .item {
+    display: flex;
+    margin-left: 20px;
+    color: var(--text-color);
+    font-size: 1.3rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+}
+.header__top-social {
+    display: flex;
+    width: 130px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.social__img{
+    font-size: 1.7rem;
+}
+.social__img-fb{
+    font-size: 1.7rem;
+    color: blue;
+}
+
+.socia__img-ytb{
+    font-size: 1.7rem;
+    color: red;
+}
+
+.social__img-rss{
+    font-size: 1.7rem;
+    color: orange;
+}
+
+.header__middle {
+    padding: 20px 0 20px 0;
+}
+
+.header__middle-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header__logo {
+    display: block;
+    width: 262px
+}
+
+.header__middle-left {
+    display: flex;
+    align-items: center;
+    margin-left: 24px;
+    padding-left: 10px;
+    border-left: 1px solid #ebebeb;
+    flex: 1;
+}
+
+.header__middle-left .time {
+    color: var(--text-color);
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    margin-right: 16px;
+}
+
+.header__mid-right {
+    display: flex;
+    align-items: center;
+}
+
+.header__mid-right .nocation {
+    display: flex;
+    align-items: center;
+    margin-right: 24px;
+    color: var(--text-color);
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+    justify-content: space-around;
+    width: 80px;
+    margin: 0 26px 0 43px;
+}
+
+.nocation-img{
+    font-size: 1.8rem;
+    color: #2c85df;
+}
+
+.header__search {
+    position: relative;
+    width: 162px;
+    margin-right: 24px;
+    display: flex;
+}
+
+.header__search .btn-search {
+    width: 100%;
+    padding: 0 40px 0 8px;
+    border-radius: 99px;
+    border: 1px solid #d2d2d2;
+    background: var(--white-color);
+    height: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.4rem;
+}
+
+.header__search .btn-submit {
+    width: 30px;
+    height: 30px;
+    border: 0;
+    padding: 0;
+    background: 0;
+    position: absolute;
+    top: 2px;
+    right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-img{
+    font-size: 1.8rem;
+    color: #2c85df;
+
+}
+
+.loginform {
+    flex-shrink: 0;
+    max-width: 285px;
+    margin-right: 24px;
+}
+.vip-img{
+    font-size: 1.6rem;
+    color: var(--white-color);
+}
+
+.header__revip {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 99px;
+    background: #2c85df;
+    padding: 3px 12px 3px 4px;
+    color: var(--white-color);
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 550;
+    line-height: normal;
+    text-decoration: none;
+    width: 225px;
+    height: 27px;
+}
+
+.header__bottom {
+    position: relative;
+}
+.header__n-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__nav {
+    background: #0959ab;
+    margin: auto;
+    padding: 0;
+}
+
+.header__n-flex .nav-link.active {
+    background: #024488;
+}
+.header__n-flex .nav-link {
+    padding: 0 3px;
+}
+.header__n-flex .nav-link {
+    display: flex;
+    height: 34px;
+    padding: 0 4px;
+    color: var(--white-color);
+    font-family: 'Roboto', sans-serif;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+    text-transform: uppercase;
+    align-items: center;
+}
+
+
