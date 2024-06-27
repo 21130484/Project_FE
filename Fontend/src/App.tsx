@@ -1,10 +1,15 @@
+// @ts-ignore
 import React from 'react';
 import './App.css';
-import ProjectPage from "./component/Project";
+import Header from "./component/Header";
+import Classify from "./component/Classify";
+import Footer from "./component/Footer";
 function App() {
   return (
     <div>
-        <ProjectPage></ProjectPage>
+        <Header></Header>
+        <Classify></Classify>
+        <Footer></Footer>
     </div>
   );
 }

@@ -1,0 +1,28 @@
+:root{
+  --black-color:#000;
+  --white-color:#fff;
+  --text-color:#454545;
+  --title-color: #292929;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style-type: none;
+  font-family: Inter sans-serif;
+  font-family: Roboto sans-serif;
+  font-family: Merriweather sans-serif;
+  color: #454545;
+  font-size: 14px;
+  line-height: 150%;
+}
+
+.container {
+  margin: 0 auto;
+  width: 1200px;
+  max-width: 100%;
+}
+
+/*# sourceMappingURL=main.css.map */
