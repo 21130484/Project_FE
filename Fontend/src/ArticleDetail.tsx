@@ -50,8 +50,8 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, content, author })
     return (
         <div className="article-detail">
             <h1>{articleTitle}</h1>
-            <p><strong>Author:</strong> {articleAuthor}</p>
-            <p><strong>Sapo:</strong> {articleSapo}</p>
+            <p><strong>{articleAuthor}</strong> </p>
+            <p><strong>{articleSapo}</strong></p>
             <div className="content" dangerouslySetInnerHTML={{ __html: articleContent }}></div>
             <div className="images">
                 {articleImages.map((image, index) => (
