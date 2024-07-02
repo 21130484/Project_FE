@@ -11,29 +11,33 @@ app.use(cors());
 
 app.get('/scrape', async (req, res) => {
     try {
-        const url = 'https://nld.com.vn/150-may-bay-hon-40-tau-ram-ro-tap-tran-hai-quan-lon-nhat-the-gioi-196240628132537224.htm';
+        const url = 'https://nld.com.vn/toa-an-toi-cao-my-ra-phan-quyet-quan-trong-voi-ong-trump-19624070122574025.htm';
         const { data } = await axios.get(url);
         const $ = cheerio.load(data);
 
-        const title = $('h1.detail-title[data-role="title"]').text();
-        const author = $('div.author-info p.name[data-role="author"]').text();
-        const sapo = $('h2.detail-sapo[data-role="sapo"]').text();
-        const publishDate = $('div.detail-time [data-role="publishdate"]').text(); // Lấy ngày giờ từ HTML
+        const title = $('h1.detail-title[data-role="title"]').text().trim();
+        const author = $('div.author-info p.name[data-role="author"]').text().trim();
+        const sapo = $('h2.detail-sapo[data-role="sapo"]').text().trim();
+        const publishDate = $('div.detail-time [data-role="publishdate"]').text().trim();
 
-        const content = [];
-        $('div.detail-content[data-role="content"] p').each((index, element) => {
-            content.push($(element).text());
-        });
+        // Extract the content of the `detail-cmain` div
+        const detailCmainHtml = $('div.detail-cmain').html();
 
-        const images = [];
-        $('div.detail-content[data-role="content"] figure img').each((index, element) => {
-            images.push({
-                src: $(element).attr('src'),
-                alt: $(element).attr('alt')
-            });
-        });
+        // Extract video information
+        let videoUrl = $('div.VCSortableInPreviewMode').attr('data-vid');
+        let videoData = {};
+        let videoCaption = '';
 
-        res.json({ title, author, sapo, publishDate, content, images });
+        if (videoUrl) {
+            const videoDataUrl = `https://${videoUrl}`;
+            const { data: videoResponse } = await axios.get(videoDataUrl);
+            videoData = videoResponse;
+            videoCaption = $('.VideoCMS_Caption p').text().trim();
+        } else {
+            videoUrl = '';
+        }
+
+        res.json({ title, author, sapo, publishDate, detailCmainHtml, videoUrl, videoData, videoCaption });
     } catch (error) {
         console.error('Error during scraping:', error);
         res.status(500).json({ error: 'Failed to scrape the data' });
