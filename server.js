@@ -11,7 +11,7 @@ app.use(cors());
 
 app.get('/scrape', async (req, res) => {
     try {
-        const url = 'https://nld.com.vn/toa-an-toi-cao-my-ra-phan-quyet-quan-trong-voi-ong-trump-19624070122574025.htm';
+        const url = 'https://nld.com.vn/diem-nong-xung-dot-ngay-1-7-hang-loat-can-cu-my-o-chau-au-bao-dong-do-196240701064940817.htm';
         const { data } = await axios.get(url);
         const $ = cheerio.load(data);
 
