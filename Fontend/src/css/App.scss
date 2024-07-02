@@ -63,200 +63,200 @@
   .VideoCMS_Caption{
     display: none;
   }
-  [data-role=content] {
-    .kbwscwl-relatedbox {
-      max-width: 300px;
-      float: right; /* Aligns the related box to the right */
-      display: block;
-      margin-bottom: 0;
+[data-role=content] {
+  .kbwscwl-relatedbox {
+    max-width: 300px;
+    float: right; /* Đặt box nằm bên phải */
+    display: block;
+    margin-bottom: 0;
 
-      /* Styles for different types of related boxes */
+    /* Styles for different types of related boxes */
+    & .kbwscwlrl-title {
+      margin: 0;
+      padding: 10px 7px 7px 10px;
+
+      & a.title {
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 5px;
+        text-decoration: none;
+        display: block;
+        line-height: 30px;
+
+        & svg {
+          margin-left: 8px;
+        }
+
+        &:hover {
+          color: #666 !important;
+        }
+      }
+    }
+
+    /* Styles for type-1 related box */
+    &.type-1 {
+      width: auto;
+
       & .kbwscwlrl-title {
-        margin: 0;
-        padding: 10px 7px 7px 10px;
+        background: #eaeaea;
+      }
+    }
+
+    /* Styles for type-2 related box */
+    &.type-2 {
+      border-top: 3px solid #0959ab;
+      border-bottom: 3px solid #0959ab;
+
+      & .kbwscwlrl-title {
+        padding: 0 !important;
+        margin: 0 !important;
 
         & a.title {
           font-size: 16px;
+          line-height: 24px;
           color: #333;
-          margin-bottom: 5px;
+        }
+      }
+
+      & .kbwscwlrl {
+        list-style: disc;
+        color: #0959ab;
+        margin-left: 15px;
+        padding: 20px 0;
+        border-bottom: 1px solid #e2e2e2;
+        display: list-item !important;
+        list-style-type: disc !important;
+      }
+    }
+
+    /* Styles for type-3 related box */
+    &.type-3 {
+      border-top: 3px solid #0959ab;
+      border-bottom: 3px solid #0959ab;
+
+      & .kbwscwlrl-title {
+        padding: 15px 0;
+
+        & a.title {
+          font-size: 20px;
+          line-height: 30px;
+          color: #222;
+        }
+      }
+
+      & .kbwscwlrl-next {
+        font-size: 15px;
+        color: #0959ab;
+        height: 27px;
+        text-transform: uppercase;
+        width: 130px;
+        line-height: 27px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        text-decoration: none;
+        background-size: 27px;
+        padding-right: 30px;
+        border: 0;
+        box-shadow: none;
+        text-align: center;
+
+        &:before {
+          display: none;
+        }
+
+        &:after {
+          content: "";
+          position: absolute;
+          width: 26px;
+          height: 26px;
+          background-color: #0959ab;
+          border-radius: 50%;
+          top: 0;
+          right: 4px;
+          background-image: url("https://static.mediacdn.vn/common/images/arr-next.svg");
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+      }
+    }
+
+    /* Styles for type-4 related box */
+    &.type-4 {
+      border: 1px solid #ccc;
+      border-top: 3px solid #0959ab;
+      border-radius: 3px;
+      overflow: hidden;
+
+      & .kbwscwlrl-title-header {
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: left;
+        margin-top: 10px;
+        padding-bottom: 9px;
+        display: block;
+        padding-left: 10px;
+        border-bottom: 1px solid #ccc;
+      }
+
+      & .kbwscwlrl-news-thumb-avata {
+        float: left;
+        width: 45%;
+        padding: 0;
+        margin-right: 3%;
+      }
+
+      & .kbwscwlrl {
+        float: left;
+        position: relative;
+        text-align: left;
+        border-top: 1px dotted #cbcfd3;
+        margin-top: 10px;
+        padding-top: 10px;
+        margin-right: 10px;
+
+        &:first-child {
+          margin-top: 0;
+          border: none;
+        }
+      }
+
+      & .kbwscwlrl-thumb-avata {
+        float: left;
+        width: 45%;
+        padding: 0;
+        height: auto;
+
+        & img {
+          display: block;
+          width: 100%;
+          height: auto;
+          padding: 0;
+        }
+      }
+
+      & .kbwscwlrl-title {
+        margin-left: 52%;
+        padding: 0;
+
+        & a.title {
+          font-size: 15px;
+          color: #333;
+          margin-bottom: 0;
           text-decoration: none;
           display: block;
-          line-height: 30px;
-
-          & svg {
-            margin-left: 8px;
-          }
+          line-height: 22px;
 
           &:hover {
             color: #666 !important;
           }
         }
       }
-
-      /* Styles for type-1 related box */
-      &.type-1 {
-        width: auto;
-
-        & .kbwscwlrl-title {
-          background: #eaeaea;
-        }
-      }
-
-      /* Styles for type-2 related box */
-      &.type-2 {
-        border-top: 3px solid #0959ab;
-        border-bottom: 3px solid #0959ab;
-
-        & .kbwscwlrl-title {
-          padding: 0 !important;
-          margin: 0 !important;
-
-          & a.title {
-            font-size: 16px;
-            line-height: 24px;
-            color: #333;
-          }
-        }
-
-        & .kbwscwlrl {
-          list-style: disc;
-          color: #0959ab;
-          margin-left: 15px;
-          padding: 20px 0;
-          border-bottom: 1px solid #e2e2e2;
-          display: list-item !important;
-          list-style-type: disc !important;
-        }
-      }
-
-      /* Styles for type-3 related box */
-      &.type-3 {
-        border-top: 3px solid #0959ab;
-        border-bottom: 3px solid #0959ab;
-
-        & .kbwscwlrl-title {
-          padding: 15px 0;
-
-          & a.title {
-            font-size: 20px;
-            line-height: 30px;
-            color: #222;
-          }
-        }
-
-        & .kbwscwlrl-next {
-          font-size: 15px;
-          color: #0959ab;
-          height: 27px;
-          text-transform: uppercase;
-          width: 130px;
-          line-height: 27px;
-          margin-top: 10px;
-          margin-bottom: 10px;
-          text-decoration: none;
-          background-size: 27px;
-          padding-right: 30px;
-          border: 0;
-          box-shadow: none;
-          text-align: center;
-
-          &:before {
-            display: none;
-          }
-
-          &:after {
-            content: "";
-            position: absolute;
-            width: 26px;
-            height: 26px;
-            background-color: #0959ab;
-            border-radius: 50%;
-            top: 0;
-            right: 4px;
-            background-image: url("https://static.mediacdn.vn/common/images/arr-next.svg");
-            background-repeat: no-repeat;
-            background-position: center;
-          }
-        }
-      }
-
-      /* Styles for type-4 related box */
-      &.type-4 {
-        border: 1px solid #ccc;
-        border-top: 3px solid #0959ab;
-        border-radius: 3px;
-        overflow: hidden;
-
-        & .kbwscwlrl-title-header {
-          font-size: 16px;
-          font-weight: 700;
-          text-transform: uppercase;
-          text-align: left;
-          margin-top: 10px;
-          padding-bottom: 9px;
-          display: block;
-          padding-left: 10px;
-          border-bottom: 1px solid #ccc;
-        }
-
-        & .kbwscwlrl-news-thumb-avata {
-          float: left;
-          width: 45%;
-          padding: 0;
-          margin-right: 3%;
-        }
-
-        & .kbwscwlrl {
-          float: left;
-          position: relative;
-          text-align: left;
-          border-top: 1px dotted #cbcfd3;
-          margin-top: 10px;
-          padding-top: 10px;
-          margin-right: 10px;
-
-          &:first-child {
-            margin-top: 0;
-            border: none;
-          }
-        }
-
-        & .kbwscwlrl-thumb-avata {
-          float: left;
-          width: 45%;
-          padding: 0;
-          height: auto;
-
-          & img {
-            display: block;
-            width: 100%;
-            height: auto;
-            padding: 0;
-          }
-        }
-
-        & .kbwscwlrl-title {
-          margin-left: 52%;
-          padding: 0;
-
-          & a.title {
-            font-size: 15px;
-            color: #333;
-            margin-bottom: 0;
-            text-decoration: none;
-            display: block;
-            line-height: 22px;
-
-            &:hover {
-              color: #666 !important;
-            }
-          }
-        }
-      }
     }
   }
+}
 
-  .VCSortableInPreviewMode {
+.VCSortableInPreviewMode {
     max-width: 90%; /* Giới hạn chiều rộng tối đa của figure */
     margin: 0 auto; /* Căn giữa figure */
     text-align: center; /* Căn giữa nội dung bên trong figure */
@@ -271,3 +271,24 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng cho hình ảnh */
   }
 
+  .alignCenter {
+    margin: 20px auto; /* Để căn giữa nội dung */
+    max-width: 900px; /* Giới hạn chiều rộng tối đa của box */
+
+    border: 2px solid #ccc; /* Màu và độ rộng đường viền */
+    border-radius: 8px; /* Bo tròn các góc của box */
+    padding: 20px; /* Khoảng cách từ nội dung đến đường viền */
+
+    background-color: #FFFBF2; /* Màu nền */
+    color: #333333; /* Màu chữ */
+
+    text-align: left; /* Căn nội dung văn bản về phía trái */
+
+    & > div {
+      padding: 10px; /* Khoảng cách từ nội dung đến đường viền trong box */
+    }
+
+    p {
+      margin: 0; /* Loại bỏ khoảng cách mặc định của đoạn văn bản */
+    }
+  }
