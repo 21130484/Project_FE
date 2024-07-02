@@ -4,9 +4,8 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
-  margin: 0 auto; /* Để căn giữa trang */
-  max-width: 900px; /* Giới hạn chiều rộng tối đa của nội dung */
-  font-family: Arial, Helvetica, sans-serif; /* Đổi font thành sans-serif */
+  margin: 0 auto;
+  max-width: 900px;
 
   &:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -23,17 +22,13 @@
     color: #555;
     line-height: 1.6;
     font-size: 1.1em;
+    max-height: 300px; /* Đặt chiều cao tối đa cho các đoạn văn bản */
+    overflow: hidden; /* Ẩn bất kỳ nội dung nào vượt quá chiều cao */
+    text-overflow: ellipsis; /* Nếu cần, hiển thị dấu ba chấm khi nội dung bị cắt bớt */
   }
+}
 
-  .content {
-    margin-top: 20px;
-    font-size: 1.2em;
-    color: #666;
-    line-height: 1.8;
-    text-align: left;
-  }
-
-  .image-container {
+.image-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center; /* Căn giữa các hình ảnh theo chiều ngang */
@@ -48,11 +43,231 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
+
+    img {
+      max-width: 50%; /* Hình ảnh sẽ không vượt quá chiều rộng của .image-item */
+      height: auto; /* Đảm bảo tỷ lệ khung hình được giữ nguyên */
+      display: block; /* Để loại bỏ khoảng trắng dưới dạng trống */
+    }
   }
 
-  .image-item img {
+
+  [data-placeholder] {
+    text-align: center;
     width: 100%;
-    height: auto;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
   }
-}
+  .VideoCMS_Caption{
+    display: none;
+  }
+  [data-role=content] {
+    .kbwscwl-relatedbox {
+      max-width: 300px;
+      float: right; /* Aligns the related box to the right */
+      display: block;
+      margin-bottom: 0;
+
+      /* Styles for different types of related boxes */
+      & .kbwscwlrl-title {
+        margin: 0;
+        padding: 10px 7px 7px 10px;
+
+        & a.title {
+          font-size: 16px;
+          color: #333;
+          margin-bottom: 5px;
+          text-decoration: none;
+          display: block;
+          line-height: 30px;
+
+          & svg {
+            margin-left: 8px;
+          }
+
+          &:hover {
+            color: #666 !important;
+          }
+        }
+      }
+
+      /* Styles for type-1 related box */
+      &.type-1 {
+        width: auto;
+
+        & .kbwscwlrl-title {
+          background: #eaeaea;
+        }
+      }
+
+      /* Styles for type-2 related box */
+      &.type-2 {
+        border-top: 3px solid #0959ab;
+        border-bottom: 3px solid #0959ab;
+
+        & .kbwscwlrl-title {
+          padding: 0 !important;
+          margin: 0 !important;
+
+          & a.title {
+            font-size: 16px;
+            line-height: 24px;
+            color: #333;
+          }
+        }
+
+        & .kbwscwlrl {
+          list-style: disc;
+          color: #0959ab;
+          margin-left: 15px;
+          padding: 20px 0;
+          border-bottom: 1px solid #e2e2e2;
+          display: list-item !important;
+          list-style-type: disc !important;
+        }
+      }
+
+      /* Styles for type-3 related box */
+      &.type-3 {
+        border-top: 3px solid #0959ab;
+        border-bottom: 3px solid #0959ab;
+
+        & .kbwscwlrl-title {
+          padding: 15px 0;
+
+          & a.title {
+            font-size: 20px;
+            line-height: 30px;
+            color: #222;
+          }
+        }
+
+        & .kbwscwlrl-next {
+          font-size: 15px;
+          color: #0959ab;
+          height: 27px;
+          text-transform: uppercase;
+          width: 130px;
+          line-height: 27px;
+          margin-top: 10px;
+          margin-bottom: 10px;
+          text-decoration: none;
+          background-size: 27px;
+          padding-right: 30px;
+          border: 0;
+          box-shadow: none;
+          text-align: center;
+
+          &:before {
+            display: none;
+          }
+
+          &:after {
+            content: "";
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            background-color: #0959ab;
+            border-radius: 50%;
+            top: 0;
+            right: 4px;
+            background-image: url("https://static.mediacdn.vn/common/images/arr-next.svg");
+            background-repeat: no-repeat;
+            background-position: center;
+          }
+        }
+      }
+
+      /* Styles for type-4 related box */
+      &.type-4 {
+        border: 1px solid #ccc;
+        border-top: 3px solid #0959ab;
+        border-radius: 3px;
+        overflow: hidden;
+
+        & .kbwscwlrl-title-header {
+          font-size: 16px;
+          font-weight: 700;
+          text-transform: uppercase;
+          text-align: left;
+          margin-top: 10px;
+          padding-bottom: 9px;
+          display: block;
+          padding-left: 10px;
+          border-bottom: 1px solid #ccc;
+        }
+
+        & .kbwscwlrl-news-thumb-avata {
+          float: left;
+          width: 45%;
+          padding: 0;
+          margin-right: 3%;
+        }
+
+        & .kbwscwlrl {
+          float: left;
+          position: relative;
+          text-align: left;
+          border-top: 1px dotted #cbcfd3;
+          margin-top: 10px;
+          padding-top: 10px;
+          margin-right: 10px;
+
+          &:first-child {
+            margin-top: 0;
+            border: none;
+          }
+        }
+
+        & .kbwscwlrl-thumb-avata {
+          float: left;
+          width: 45%;
+          padding: 0;
+          height: auto;
+
+          & img {
+            display: block;
+            width: 100%;
+            height: auto;
+            padding: 0;
+          }
+        }
+
+        & .kbwscwlrl-title {
+          margin-left: 52%;
+          padding: 0;
+
+          & a.title {
+            font-size: 15px;
+            color: #333;
+            margin-bottom: 0;
+            text-decoration: none;
+            display: block;
+            line-height: 22px;
+
+            &:hover {
+              color: #666 !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .VCSortableInPreviewMode {
+    max-width: 90%; /* Giới hạn chiều rộng tối đa của figure */
+    margin: 0 auto; /* Căn giữa figure */
+    text-align: center; /* Căn giữa nội dung bên trong figure */
+  }
+
+  .VCSortableInPreviewMode img {
+    max-width: 100%; /* Chiều rộng tối đa của hình ảnh */
+    height: auto; /* Chiều cao tự điều chỉnh */
+    display: block; /* Loại bỏ khoảng trắng dưới dạng trống */
+    margin: 0 auto; /* Căn giữa hình ảnh trong figure */
+    border-radius: 8px; /* Bo tròn góc nếu cần */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng cho hình ảnh */
+  }
+

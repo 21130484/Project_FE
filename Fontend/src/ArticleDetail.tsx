@@ -3,16 +3,20 @@ import axios from 'axios';
 
 interface ArticleDetailProps {
     title?: string;
-    content?: string;
     author?: string;
+    sapo?: string;
+    publishDate?: string;
+    detailCmainHtml?: string;
+    videoUrl?: string;
 }
 
-const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, content, author }) => {
+const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publishDate, detailCmainHtml, videoUrl }) => {
     const [articleTitle, setArticleTitle] = useState(title || 'Untitled Article');
-    const [articleContent, setArticleContent] = useState(content || '');
     const [articleAuthor, setArticleAuthor] = useState(author || 'Anonymous');
-    const [articleSapo, setArticleSapo] = useState('');
-    const [articleImages, setArticleImages] = useState<{ src: string; alt: string }[]>([]);
+    const [articleSapo, setArticleSapo] = useState(sapo || '');
+    const [articlePublishDate, setArticlePublishDate] = useState(publishDate || '');
+    const [articleDetailCmainHtml, setArticleDetailCmainHtml] = useState(detailCmainHtml || '');
+    const [articleVideoUrl, setArticleVideoUrl] = useState(videoUrl || '');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -20,13 +24,14 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, content, author })
         const fetchArticle = async () => {
             try {
                 const response = await axios.get('http://localhost:3002/scrape');
-                const { title, content, author, sapo, images } = response.data;
+                const { title, author, sapo, publishDate, detailCmainHtml, videoUrl } = response.data;
 
                 setArticleTitle(title || 'Untitled Article');
-                setArticleContent(content || '');
                 setArticleAuthor(author || 'Anonymous');
                 setArticleSapo(sapo || '');
-                setArticleImages(images || []);
+                setArticlePublishDate(publishDate || '');
+                setArticleDetailCmainHtml(detailCmainHtml || '');
+                setArticleVideoUrl(videoUrl || '');
 
             } catch (error) {
                 console.error('Error fetching the article:', error);
@@ -40,32 +45,39 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, content, author })
     }, []);
 
     if (loading) {
-        return <p>Loading...</p>; // You can customize the loading indicator here
+        return <p>Loading...</p>;
     }
 
     if (error) {
-        return <p>Error: {error}</p>; // Display an error message if fetching fails
+        return <p>Error: {error}</p>;
     }
 
     return (
         <div className="article-detail">
             <h1>{articleTitle}</h1>
-            <p><strong>{articleAuthor}</strong> </p>
+            <p><strong>{articleAuthor}</strong></p>
             <p><strong>{articleSapo}</strong></p>
-            <div className="content" dangerouslySetInnerHTML={{ __html: articleContent }}></div>
-            <div className="images">
-                {articleImages.map((image, index) => (
-                    <img key={index} src={image.src} alt={image.alt} />
-                ))}
-            </div>
+            <p><strong>{articlePublishDate}</strong></p>
+            {articleVideoUrl && (
+                <div className="video-container">
+                    <video controls>
+                        <source src={articleVideoUrl} type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            )}
+            <div className="content" dangerouslySetInnerHTML={{ __html: articleDetailCmainHtml }}></div>
         </div>
     );
 };
 
 ArticleDetail.defaultProps = {
     title: 'Untitled Article',
-    content: 'No content available',
-    author: 'Anonymous'
+    author: 'Anonymous',
+    sapo: '',
+    publishDate: '',
+    detailCmainHtml: '',
+    videoUrl: '',
 };
 
 export default ArticleDetail;
