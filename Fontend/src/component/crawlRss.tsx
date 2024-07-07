@@ -8,34 +8,26 @@ interface RssItem {
     description: string;
     pubDate: string;
 }
-const Page: React.FC<{ url: string }> = ({ url }) => {
+const News: React.FC<{ url: string }> = ({ url }) => {
     const [rssItems, setRssItems] = useState<RssItem[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`${CORS_PROXY}${url}`);
+                const response = await fetch(`http://localhost:3002/rss?url=${encodeURIComponent(url)}`);
                 if (!response.ok) {
                     throw new Error('Không thể tải dữ liệu RSS');
                 }
-                const text = await response.text();
-                const parser = new DOMParser();
-                const xml = parser.parseFromString(text, 'text/xml');
-                const items = xml.querySelectorAll('item');
-                const rssItemsArray: RssItem[] = Array.from(items, (item) => ({
-                    title: item.querySelector('title')?.textContent || '',
-                    link: item.querySelector('link')?.textContent || '',
-                    description: item.querySelector('description')?.textContent || '',
-                    pubDate: item.querySelector('pubDate')?.textContent || '',
-                }));
-                setRssItems(rssItemsArray);
+
+                const data = await response.json();
+                setRssItems(data);
             } catch (error) {
                 console.error('Lỗi khi lấy dữ liệu RSS:', error);
             }
         };
 
         fetchData();
-    }, []);
+    }, [url]);
 
     return (
         <div>
@@ -57,4 +49,4 @@ const Page: React.FC<{ url: string }> = ({ url }) => {
     );
 };
 
-export default Page;
+export default News;
