@@ -1,71 +1,60 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-// @ts-ignore
-import { parseStringPromise } from 'xml2js';
 
-interface IRssItem {
+const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';
+type Props = {}
+interface RssItem {
     title: string;
     link: string;
     description: string;
     pubDate: string;
 }
-
-const RssFeed: React.FC<{ url: string }> = ({ url }) => {
-    const [items, setItems] = useState<IRssItem[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
+const Page: React.FC<{ url: string }> = ({ url }) => {
+    const [rssItems, setRssItems] = useState<RssItem[]>([]);
 
     useEffect(() => {
-        const fetchRss = async () => {
+        const fetchData = async () => {
             try {
-                setLoading(true);
-                const response = await axios.get(url, {
-                    headers: {
-                        'Content-Type': 'application/rss+xml',
-                    },
-                });
-                const result = await parseStringPromise(response.data);
-                const rssItems = result.rss.channel[0].item.map((item: any) => ({
-                    title: item.title[0],
-                    link: item.link[0],
-                    description: item.description[0],
-                    pubDate: item.pubDate[0],
+                const response = await fetch(`${CORS_PROXY}${url}`);
+                if (!response.ok) {
+                    throw new Error('Không thể tải dữ liệu RSS');
+                }
+                const text = await response.text();
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(text, 'text/xml');
+                const items = xml.querySelectorAll('item');
+                const rssItemsArray: RssItem[] = Array.from(items, (item) => ({
+                    title: item.querySelector('title')?.textContent || '',
+                    link: item.querySelector('link')?.textContent || '',
+                    description: item.querySelector('description')?.textContent || '',
+                    pubDate: item.querySelector('pubDate')?.textContent || '',
                 }));
-                setItems(rssItems);
-            } catch (err) {
-                setError('Error fetching RSS feed');
-            } finally {
-                setLoading(false);
+                setRssItems(rssItemsArray);
+            } catch (error) {
+                console.error('Lỗi khi lấy dữ liệu RSS:', error);
             }
         };
 
-        fetchRss();
-    }, [url]);
-
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
-    if (error) {
-        return <div>{error}</div>;
-    }
+        fetchData();
+    }, []);
 
     return (
         <div>
-            <h1>RSS Feed</h1>
-            <ul>
-                {items.map((item, index) => (
-                    <li key={index}>
-                        <a href={item.link} target="_blank" rel="noopener noreferrer">
-                            {item.title}
-                        </a>
-                        <p>{item.description}</p>
-                        <small>{item.pubDate}</small>
-                    </li>
-                ))}
-            </ul>
+            {rssItems.length === 0 ? (
+                <p>Đang tải dữ liệu...</p>
+            ) : (
+                <div>
+                    {rssItems.map((item, index) => (
+                        <div key={index}>
+                            <h2><a href={item.link} target="_blank" rel="noopener noreferrer">{item.title}</a></h2>
+                            <div dangerouslySetInnerHTML={{ __html: item.description }} />
+                            <p>Ngày đăng: {item.pubDate}</p>
+                            <hr />
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };
 
-export default RssFeed;
+export default Page;
