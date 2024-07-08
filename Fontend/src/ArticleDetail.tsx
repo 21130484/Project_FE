@@ -23,7 +23,7 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publ
     useEffect(() => {
         const fetchArticle = async () => {
             try {
-                const response = await axios.get('http://localhost:3002/scrape');
+                const response = await axios.get('http://localhost:3001/scrape');
                 const { title, author, sapo, publishDate, detailCmainHtml, videoUrl } = response.data;
 
                 setArticleTitle(title || 'Untitled Article');
@@ -61,7 +61,7 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publ
             {articleVideoUrl && (
                 <div className="video-container">
                     <video controls>
-                        <source src={articleVideoUrl} type="video/mp4" />
+                        <source src={`https://${articleVideoUrl}`} type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
                 </div>

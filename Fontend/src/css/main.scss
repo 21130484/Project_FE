@@ -16,3 +16,21 @@ $font-family: Arial, Helvetica, sans-serif;
   width: 1200px;
   max-width: 100%;
 }
+body {
+  font-family: Inter;
+  color: #454545;
+  font-size: 14px;
+  line-height: 150%;
+  background-color: #fff;
+  -webkit-animation-duration: .1s;
+  -webkit-animation-name: fontfix;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-delay: .1s;
+  -webkit-tap-highlight-color: transparent;
+  margin: 0;
+  min-width: 1232px;
+}
+*,::after,::before {
+  box-sizing: border-box
+}
