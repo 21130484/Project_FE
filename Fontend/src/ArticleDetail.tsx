@@ -8,9 +8,10 @@ interface ArticleDetailProps {
     publishDate?: string;
     detailCmainHtml?: string;
     videoUrl?: string;
+    articleUrl?: string; // Thêm thuộc tính articleUrl để chứa URL của bài báo
 }
 
-const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publishDate, detailCmainHtml, videoUrl }) => {
+const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publishDate, detailCmainHtml, videoUrl, articleUrl }) => {
     const [articleTitle, setArticleTitle] = useState(title || 'Untitled Article');
     const [articleAuthor, setArticleAuthor] = useState(author || 'Anonymous');
     const [articleSapo, setArticleSapo] = useState(sapo || '');
@@ -23,7 +24,7 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publ
     useEffect(() => {
         const fetchArticle = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/scrape');
+                const response = await axios.get(`http://localhost:3001/scrape?url=${encodeURIComponent(articleUrl || '')}`);
                 const { title, author, sapo, publishDate, detailCmainHtml, videoUrl } = response.data;
 
                 setArticleTitle(title || 'Untitled Article');
@@ -42,7 +43,7 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publ
         };
 
         fetchArticle();
-    }, []);
+    }, [articleUrl]); // Thêm articleUrl vào dependencies để useEffect chạy lại khi articleUrl thay đổi
 
     if (loading) {
         return <p>Loading...</p>;
@@ -54,7 +55,7 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publ
 
     return (
         <div className="article-detail">
-            <h1>{articleTitle}</h1>
+            <h1><a href={articleUrl} target="_blank" rel="noopener noreferrer">{articleTitle}</a></h1>
             <p><strong>{articleAuthor}</strong></p>
             <p><strong>{articleSapo}</strong></p>
             <p><strong>{articlePublishDate}</strong></p>
@@ -78,6 +79,7 @@ ArticleDetail.defaultProps = {
     publishDate: '',
     detailCmainHtml: '',
     videoUrl: '',
+    articleUrl: '', // Mặc định articleUrl là chuỗi rỗng
 };
 
 export default ArticleDetail;
