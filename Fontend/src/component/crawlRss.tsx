@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';
-type Props = {}
 interface RssItem {
     title: string;
     link: string;
-    description: string;
+    anchorTag: string;
+    textContent: string;
     pubDate: string;
 }
-const News: React.FC<{ url: string }> = ({ url }) => {
+const useRssFeed = (url: string, quantity: number): RssItem[] => {
     const [rssItems, setRssItems] = useState<RssItem[]>([]);
 
     useEffect(() => {
@@ -20,33 +19,20 @@ const News: React.FC<{ url: string }> = ({ url }) => {
                 }
 
                 const data = await response.json();
-                setRssItems(data);
+                if (quantity !== -1) {
+                    setRssItems(data.slice(0, quantity));
+                } else {
+                    setRssItems(data);
+                }
             } catch (error) {
                 console.error('Lỗi khi lấy dữ liệu RSS:', error);
             }
         };
 
         fetchData();
-    }, [url]);
+    }, [url, quantity]);
 
-    return (
-        <div>
-            {rssItems.length === 0 ? (
-                <p>Đang tải dữ liệu...</p>
-            ) : (
-                <div>
-                    {rssItems.map((item, index) => (
-                        <div key={index}>
-                            <h2><a href={item.link} target="_blank" rel="noopener noreferrer">{item.title}</a></h2>
-                            <div dangerouslySetInnerHTML={{ __html: item.description }} />
-                            <p>Ngày đăng: {item.pubDate}</p>
-                            <hr />
-                        </div>
-                    ))}
-                </div>
-            )}
-        </div>
-    );
+    return rssItems;
 };
 
-export default News;
+export default useRssFeed;
