@@ -1,0 +1,39 @@
+#header {
+  background-color: #000000;
+}
+
+.header_main {
+  height: 50px;
+}
+.header_main ul.nav-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+.header_main ul.nav-list li.nav-item p {
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+}
+.header_main ul.nav-list li.nav-item .header-search {
+  display: flex;
+  background-color: #fff;
+  padding: 2px 5px;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: space-between;
+}
+.header_main ul.nav-list li.nav-item .header-search input.search {
+  outline: none;
+  border: none;
+  margin: 0 5px;
+  font-size: 16px;
+}
+.header_main ul.nav-list li.nav-item p:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/*# sourceMappingURL=Header.css.map */

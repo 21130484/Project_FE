@@ -1,0 +1,43 @@
+#header {
+  background-color: #000000;
+}
+.header_main {
+  height: 50px;
+
+  ul.nav-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+
+    li.nav-item  {
+      p {
+        color: #fff;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .header-search {
+        display: flex;
+        background-color: #fff;
+        padding: 2px 5px;
+        border-radius: 5px;
+        align-items: center;
+        justify-content: space-between;
+
+        input.search {
+          outline: none;
+          border: none;
+          margin: 0 5px;
+          font-size: 16px;
+        }
+      }
+
+      p:hover {
+        background-color: #fff;
+        color:#000;
+      }
+    }
+  }
+}
