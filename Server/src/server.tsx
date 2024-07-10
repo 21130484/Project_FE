@@ -42,7 +42,6 @@ const extractVideoData = async ($: cheerio.Root): Promise<VideoData> => {
     return { videoUrl, videoData, videoCaption };
 };
 
-// Render RSS
 app.get('/rss', async (req: Request, res: Response) => {
     try {
         const rssUrl = req.query.url as string;
@@ -82,12 +81,12 @@ app.get('/rss', async (req: Request, res: Response) => {
 
 app.get('/scrape', async (req: Request, res: Response) => {
     try {
-        const { url } = req.query; // Lấy tham số url từ query string
+        const { url } = req.query;
         if (!url || typeof url !== 'string') {
             return res.status(400).json({ error: 'Missing or invalid URL parameter' });
         }
 
-        const { data } = await axios.get(url as string); // Sử dụng URL được cung cấp từ tham số
+        const { data } = await axios.get(url as string);
         const $ = cheerio.load(data);
 
         const title = $('h1.detail-title[data-role="title"]').text().trim();
@@ -96,9 +95,25 @@ app.get('/scrape', async (req: Request, res: Response) => {
         const publishDate = $('div.detail-time [data-role="publishdate"]').text().trim();
         const detailCmainHtml = $('div.detail-cmain').html();
 
+        const detailHistoryElement = $('div.detail__history').html();
+        const detailHistory = detailHistoryElement || ' ';
+
+        const relatedItemsHtml = $('div.detail__related').html() || '';
+
         const { videoUrl, videoData, videoCaption } = await extractVideoData($);
 
-        res.json({ title, author, sapo, publishDate, detailCmainHtml, videoUrl, videoData, videoCaption });
+        res.json({
+            title,
+            author,
+            sapo,
+            publishDate,
+            detailCmainHtml,
+            videoUrl,
+            videoData,
+            videoCaption,
+            detailHistory,
+            relatedItemsHtml
+        });
     } catch (error) {
         console.error('Error during scraping:', error);
         res.status(500).json({ error: 'Failed to scrape the data' });

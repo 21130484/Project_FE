@@ -1,31 +1,58 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+interface RelatedItem {
+    relatedTitle: string;
+    relatedLink: string;
+    relatedSapo: string;
+    relatedImgSrc: string;
+}
+
 interface ArticleDetailProps {
     title?: string;
     author?: string;
     sapo?: string;
     publishDate?: string;
     detailCmainHtml?: string;
+    detailHistory?: string;
     videoUrl?: string;
-    articleUrl?: string; // Thêm thuộc tính articleUrl để chứa URL của bài báo
+    articleUrl?: string;
+    relatedItemsHtml?: string;
 }
 
-const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publishDate, detailCmainHtml, videoUrl, articleUrl }) => {
+const ArticleDetail: React.FC<ArticleDetailProps> = ({
+                                                         title,
+                                                         author,
+                                                         sapo,
+                                                         publishDate,
+                                                         detailCmainHtml,
+                                                         videoUrl,
+                                                         articleUrl,
+                                                         detailHistory,
+                                                         relatedItemsHtml
+                                                     }) => {
     const [articleTitle, setArticleTitle] = useState(title || 'Untitled Article');
     const [articleAuthor, setArticleAuthor] = useState(author || 'Anonymous');
     const [articleSapo, setArticleSapo] = useState(sapo || '');
     const [articlePublishDate, setArticlePublishDate] = useState(publishDate || '');
     const [articleDetailCmainHtml, setArticleDetailCmainHtml] = useState(detailCmainHtml || '');
     const [articleVideoUrl, setArticleVideoUrl] = useState(videoUrl || '');
+    const [articleDetailHistory, setDetailHistory] = useState(detailHistory || '');
+    const [articleRelatedItemsHtml, setArticleRelatedItemsHtml] = useState(relatedItemsHtml || '');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchArticle = async () => {
+            if (!articleUrl) {
+                setError('Article URL is not provided');
+                setLoading(false);
+                return;
+            }
+
             try {
-                const response = await axios.get(`http://localhost:3001/scrape?url=${encodeURIComponent(articleUrl || '')}`);
-                const { title, author, sapo, publishDate, detailCmainHtml, videoUrl } = response.data;
+                const response = await axios.get(`http://localhost:3002/scrape?url=${articleUrl}`);
+                const { title, author, sapo, publishDate, detailCmainHtml, videoUrl, detailHistory, relatedItemsHtml } = response.data;
 
                 setArticleTitle(title || 'Untitled Article');
                 setArticleAuthor(author || 'Anonymous');
@@ -33,7 +60,8 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publ
                 setArticlePublishDate(publishDate || '');
                 setArticleDetailCmainHtml(detailCmainHtml || '');
                 setArticleVideoUrl(videoUrl || '');
-
+                setDetailHistory(detailHistory || '');
+                setArticleRelatedItemsHtml(relatedItemsHtml || '');
             } catch (error) {
                 console.error('Error fetching the article:', error);
                 setError('Failed to fetch article');
@@ -43,7 +71,7 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publ
         };
 
         fetchArticle();
-    }, [articleUrl]); // Thêm articleUrl vào dependencies để useEffect chạy lại khi articleUrl thay đổi
+    }, [articleUrl]);
 
     if (loading) {
         return <p>Loading...</p>;
@@ -62,13 +90,20 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publ
             {articleVideoUrl && (
                 <div className="video-container">
                     <video controls>
-                        <source src={`https://${articleVideoUrl}`} type="video/mp4" />
+                        <source src={articleVideoUrl} type="video/mp4"/>
                         Your browser does not support the video tag.
                     </video>
                 </div>
             )}
-            <div className="content" dangerouslySetInnerHTML={{ __html: articleDetailCmainHtml }}></div>
+            <div className="content" dangerouslySetInnerHTML={{__html: articleDetailCmainHtml}}></div>
+            <div>
+                <div className="related" dangerouslySetInnerHTML={{__html: articleDetailHistory}}></div>
+            </div>
+            <div>
+                <div className="related" dangerouslySetInnerHTML={{__html: articleRelatedItemsHtml}}></div>
+            </div>
         </div>
+
     );
 };
 
@@ -79,7 +114,10 @@ ArticleDetail.defaultProps = {
     publishDate: '',
     detailCmainHtml: '',
     videoUrl: '',
-    articleUrl: '', // Mặc định articleUrl là chuỗi rỗng
+    articleUrl: 'https://nld.com.vn/diem-nong-xung-dot-ngay-9-7-nga-dung-chien-thuat-ten-lua-moi-ukraine-nhan-hang-nong-tu-anh-196240709072409048.htm',
+    detailHistory: '',
+    relatedItemsHtml: ''
 };
 
 export default ArticleDetail;
+
