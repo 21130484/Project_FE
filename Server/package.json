@@ -1,0 +1,27 @@
+{
+  "name": "your-project",
+  "version": "1.0.0",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "ts-node src/server.tsx",
+    "start:dev": "nodemon --watch src --exec ts-node src/server.tsx"
+  },
+  "dependencies": {
+    "axios": "1.6.0",
+    "cheerio": "^1.0.0-rc.10",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/cheerio": "^0.22.30",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/node": "^16.11.7",
+    "@types/xml2js": "^0.4.14",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
+  }
+}

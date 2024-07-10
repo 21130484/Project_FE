@@ -1,13 +1,13 @@
 import React from 'react';
-import RssFeed from './RssFeed';
 import Header from "./component/Header";
 import Footer from "./component/Footer";
+import Classify from "./component/Classify";
 
 const App: React.FC = () => {
     return (
         <div className="App">
             <Header></Header>
-            <RssFeed url="https://nld.com.vn/rss/thoi-su.rss" />
+            <Classify></Classify>
             <Footer></Footer>
         </div>
     );
