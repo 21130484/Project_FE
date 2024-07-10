@@ -12,7 +12,6 @@
     "@types/node": "^16.18.96",
     "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
-    "axios": "^1.7.2",
     "cheerio": "^1.0.0-rc.12",
     "fast-xml-parser": "^4.4.0",
     "@types/react-router-dom": "^5.3.3",
