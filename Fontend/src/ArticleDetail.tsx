@@ -18,6 +18,7 @@ interface ArticleDetailProps {
     videoUrl?: string;
     articleUrl?: string;
     relatedItemsHtml?: string;
+    detailTr?: string;
 }
 
 const ArticleDetail: React.FC<ArticleDetailProps> = ({
@@ -29,7 +30,8 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
                                                          videoUrl,
                                                          articleUrl,
                                                          detailHistory,
-                                                         relatedItemsHtml
+                                                         relatedItemsHtml,
+                                                         detailTr
                                                      }) => {
     const [articleTitle, setArticleTitle] = useState(title || 'Untitled Article');
     const [articleAuthor, setArticleAuthor] = useState(author || 'Anonymous');
@@ -39,6 +41,7 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
     const [articleVideoUrl, setArticleVideoUrl] = useState(videoUrl || '');
     const [articleDetailHistory, setDetailHistory] = useState(detailHistory || '');
     const [articleRelatedItemsHtml, setArticleRelatedItemsHtml] = useState(relatedItemsHtml || '');
+    const [articleDetailTr, setArticleDetailTr] = useState(detailTr || '');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -52,7 +55,7 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
 
             try {
                 const response = await axios.get(`http://localhost:3002/scrape?url=${articleUrl}`);
-                const { title, author, sapo, publishDate, detailCmainHtml, videoUrl, detailHistory, relatedItemsHtml } = response.data;
+                const { title, author, sapo, publishDate, detailCmainHtml, videoUrl, detailHistory, relatedItemsHtml, detailTr } = response.data;
 
                 setArticleTitle(title || 'Untitled Article');
                 setArticleAuthor(author || 'Anonymous');
@@ -62,6 +65,7 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
                 setArticleVideoUrl(videoUrl || '');
                 setDetailHistory(detailHistory || '');
                 setArticleRelatedItemsHtml(relatedItemsHtml || '');
+                setArticleDetailTr(detailTr || '');
             } catch (error) {
                 console.error('Error fetching the article:', error);
                 setError('Failed to fetch article');
@@ -90,20 +94,20 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
             {articleVideoUrl && (
                 <div className="video-container">
                     <video controls>
-                        <source src={articleVideoUrl} type="video/mp4"/>
+                        <source src={articleVideoUrl} type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
                 </div>
             )}
-            <div className="content" dangerouslySetInnerHTML={{__html: articleDetailCmainHtml}}></div>
+            <div className="detail__cmain-main" dangerouslySetInnerHTML={{ __html: articleDetailCmainHtml }}></div>
+            <div className="detail__tr" dangerouslySetInnerHTML={{ __html: articleDetailTr }}></div>
             <div>
-                <div className="related" dangerouslySetInnerHTML={{__html: articleDetailHistory}}></div>
+                <div className="detail__history" dangerouslySetInnerHTML={{ __html: articleDetailHistory }}></div>
             </div>
             <div>
-                <div className="related" dangerouslySetInnerHTML={{__html: articleRelatedItemsHtml}}></div>
+                <div className="detail__related" dangerouslySetInnerHTML={{ __html: articleRelatedItemsHtml }}></div>
             </div>
         </div>
-
     );
 };
 
@@ -116,8 +120,8 @@ ArticleDetail.defaultProps = {
     videoUrl: '',
     articleUrl: 'https://nld.com.vn/diem-nong-xung-dot-ngay-9-7-nga-dung-chien-thuat-ten-lua-moi-ukraine-nhan-hang-nong-tu-anh-196240709072409048.htm',
     detailHistory: '',
-    relatedItemsHtml: ''
+    relatedItemsHtml: '',
+    detailTr: ''
 };
 
 export default ArticleDetail;
-

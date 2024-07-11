@@ -23,6 +23,13 @@ interface VideoData {
     videoCaption: string;
 }
 
+interface RelatedItem {
+    relatedTitle: string;
+    relatedLink: string;
+    relatedSapo: string;
+    relatedImgSrc: string;
+}
+
 const extractVideoData = async ($: cheerio.Root): Promise<VideoData> => {
     let videoUrl = $('div.VCSortableInPreviewMode').attr('data-vid') || '';
     let videoData: any = {};
@@ -40,6 +47,21 @@ const extractVideoData = async ($: cheerio.Root): Promise<VideoData> => {
     }
 
     return { videoUrl, videoData, videoCaption };
+};
+
+const extractRelatedItems = ($: cheerio.Root): RelatedItem[] => {
+    const relatedItems: RelatedItem[] = [];
+
+    $('div.box-category-item').each((_, element) => {
+        const relatedTitle = $(element).find('a.box-category-link-title').text().trim();
+        const relatedLink = $(element).find('a.box-category-link-title').attr('href') || '';
+        const relatedSapo = $(element).find('div.box-category-content h3.box-category-title-text a').text().trim();
+        const relatedImgSrc = $(element).find('img.box-category-avatar').attr('src') || '';
+
+        relatedItems.push({ relatedTitle, relatedLink, relatedSapo, relatedImgSrc });
+    });
+
+    return relatedItems;
 };
 
 app.get('/rss', async (req: Request, res: Response) => {
@@ -94,13 +116,15 @@ app.get('/scrape', async (req: Request, res: Response) => {
         const sapo = $('h2.detail-sapo[data-role="sapo"]').text().trim();
         const publishDate = $('div.detail-time [data-role="publishdate"]').text().trim();
         const detailCmainHtml = $('div.detail-cmain').html();
-
         const detailHistoryElement = $('div.detail__history').html();
         const detailHistory = detailHistoryElement || ' ';
-
         const relatedItemsHtml = $('div.detail__related').html() || '';
+        const detailCmainSub = $('div.detail__cmain-sub').html() || '';
+
+        const detailTr = $('div.detail__tr[data-marked-zoneid="nld_detail_tindocnhieu"]').html() || '';
 
         const { videoUrl, videoData, videoCaption } = await extractVideoData($);
+        const relatedItems = extractRelatedItems($);
 
         res.json({
             title,
@@ -108,11 +132,14 @@ app.get('/scrape', async (req: Request, res: Response) => {
             sapo,
             publishDate,
             detailCmainHtml,
+            detailCmainSub,
+            detailTr,
             videoUrl,
             videoData,
             videoCaption,
             detailHistory,
-            relatedItemsHtml
+            relatedItemsHtml,
+            relatedItems
         });
     } catch (error) {
         console.error('Error during scraping:', error);
