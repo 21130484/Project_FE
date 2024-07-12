@@ -7,7 +7,7 @@ interface RssItem {
     textContent: string;
     pubDate: string;
 }
-const useRssFeed = (url: string, quantity: number): RssItem[] => {
+const RssFeed = (url: string, quantity: number): RssItem[] => {
     const [rssItems, setRssItems] = useState<RssItem[]>([]);
 
     useEffect(() => {
@@ -35,4 +35,4 @@ const useRssFeed = (url: string, quantity: number): RssItem[] => {
     return rssItems;
 };
 
-export default useRssFeed;
+export default RssFeed;

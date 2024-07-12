@@ -42,6 +42,7 @@
 
 .main__new{
     display: flex;
+    height: 325px;
 }
 
 .main__new-contain{
@@ -58,6 +59,7 @@
     line-height: 150%;
     margin-bottom: 4px;
     color: var(--title-color);
+    text-align: justify;
 }
 
 .main__new-text{
@@ -68,6 +70,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: 150%;
+    text-align: justify;
 }
 
 .line-element{
@@ -90,10 +93,11 @@
     font-family: Merriweather sans-serif;
     font-size: 1.4rem;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 150%;
     letter-spacing: .032px;
     display: block;
+    text-align: justify;
 }
 
 .trending-container {
@@ -167,6 +171,7 @@
     letter-spacing: .034px;
     display: block;
     margin-bottom: 4px;
+    text-align: justify;
 }
 
 .bottom__news-text-inf{
@@ -176,19 +181,31 @@
     font-style: normal;
     font-weight: 400;
     line-height: 150%;
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    text-align: justify;
 }
 
-.bottom__news-text-inf-dots{
+.bottom__news-text-dots{
     color: #292929;
     font-family: Inter;
     font-size: 1.2rem;
     font-style: normal;
     font-weight: 400;
     line-height: 150%;
-    display: block;
     padding-left: 15px;
     position: relative;
     margin-top: 20px;
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    text-overflow: ellipsis;
 }
 .bottom__news-text-inf-dots::before {
     content: "•";
@@ -290,4 +307,34 @@
     display: block;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.small-news-item img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+}
+
+.main__new img {
+    width: 520px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bottom__news img{
+    object-fit: cover;
+    width: 320px;
+    height: 200px;
+}
+
+.politics img{
+    width: 303px;
+    height: 190px;
+    object-fit: cover;
+    margin-top: 15px;
+}
+.bottom__right-news-container-sup img{
+    object-fit: cover;
+    height: 85px;
+    width: 85px;
 }
