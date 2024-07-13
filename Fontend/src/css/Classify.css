@@ -52,13 +52,12 @@
 }
 
 .main__new-title{
-    font-family: Merriweather sans-serif;
-    font-size: 1.6rem;
+    font-family: Merriweather;
+    font-size: 1.5rem;
     font-style: normal;
-    font-weight: 550;
+    font-weight: 700;
     line-height: 150%;
     margin-bottom: 4px;
-    color: var(--title-color);
     text-align: justify;
 }
 
@@ -66,7 +65,7 @@
     display: block;
     color: var(--text-color);
     font-family: Inter sans-serif;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     font-style: normal;
     font-weight: 400;
     line-height: 150%;
@@ -89,18 +88,17 @@
 }
 
 .small-news-title{
-    color: var(--title-color);
-    font-family: Merriweather sans-serif;
-    font-size: 1.4rem;
+    display: block;
+    color: var(--text-color);
+    font-family: Inter sans-serif;
+    font-size: 1.3rem;
     font-style: normal;
     font-weight: 600;
     line-height: 150%;
-    letter-spacing: .032px;
-    display: block;
     text-align: justify;
 }
 
-.trending-container {
+/*.trending-container {
     display: flex;
     align-items: center;
     background-color: white;
@@ -145,6 +143,8 @@
     text-align: center;
     font-size: .8rem;
 }
+ */
+
 .bottom__flex-container{
     display: flex;
 }
@@ -162,16 +162,13 @@
 }
 
 .bottom__news-text-title{
-    color:  #292929;
-    font-family: Merriweather;
-    font-size: 1.4rem;
+    display: block;
+    color: var(--text-color);
+    font-family: Inter sans-serif;
+    font-size: 1.3rem;
     font-style: normal;
     font-weight: 600;
     line-height: 150%;
-    letter-spacing: .034px;
-    display: block;
-    margin-bottom: 4px;
-    text-align: justify;
 }
 
 .bottom__news-text-inf{
@@ -231,7 +228,7 @@
     margin-left: auto;
     padding-left: 10px;
     padding-right: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .bottom__right-news-container-title{
@@ -251,14 +248,13 @@
 }
 
 .bottom__right-news-container-main-title{
-    color: #292929;
-    font-family: Merriweather;
-    font-size: 1.2rem;
+    display: block;
+    color: var(--text-color);
+    font-family: Inter sans-serif;
+    font-size: 1.3rem;
     font-style: normal;
     font-weight: 600;
     line-height: 150%;
-    letter-spacing: .03px;
-    display: block;
 }
 
 .line-bottom-right{
@@ -273,18 +269,17 @@
 }
 
 .bottom__right-news-container-sup-title{
-    color: #292929;
-    font-family: Merriweather;
+    display: block;
+    color: var(--text-color);
+    font-family: Inter sans-serif;
     font-size: 1.2rem;
     font-style: normal;
     font-weight: 600;
     line-height: 150%;
-    letter-spacing: .03px;
-    display: block;
     margin-left: 20px;
 }
 
-.bottom__right-news-container-main__read-more{
+/*.bottom__right-news-container-main__read-more{
     margin-top: 20px;
 }
 
@@ -308,7 +303,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
-
+*/
 .small-news-item img {
     width: 100%;
     height: 170px;

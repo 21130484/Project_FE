@@ -43,23 +43,23 @@ function NewsPage() {
                     <div className={"bottom__right-container"}>
                         <div className={"bottom__right-news-container"}>
                             <span className={"bottom__right-news-container-title"}>Chính trị</span>
-                            <PoliticsNews title={""} url={"https://nld.com.vn/rss/thoi-su.rss"} quantity={1}/>
+                            <PoliticsNews title={""} url={"https://nld.com.vn/rss/thoi-su/chinh-tri.rss"} quantity={1}/>
                             <div className={"line-bottom-right"}></div>
-                            <PoliticsNewsSub title={""} url={"https://nld.com.vn/rss/thoi-su.rss"} quantity={2}/>
+                            <PoliticsNewsSub title={""} url={"https://nld.com.vn/rss/thoi-su/chinh-tri.rss"} quantity={2}/>
                         </div>
 
                         <div className={"bottom__right-news-container"}>
                             <span className={"bottom__right-news-container-title"}>Xã hội</span>
-                            <PoliticsNews title={""} url={"https://nld.com.vn/rss/thoi-su.rss"} quantity={1}/>
+                            <PoliticsNews title={""} url={"https://nld.com.vn/rss/thoi-su/xa-hoi.rss"} quantity={1}/>
                             <div className={"line-bottom-right"}></div>
-                            <PoliticsNewsSub title={""} url={"https://nld.com.vn/rss/thoi-su.rss"} quantity={2}/>
+                            <PoliticsNewsSub title={""} url={"https://nld.com.vn/rss/thoi-su/xa-hoi.rss"} quantity={2}/>
                         </div>
 
                         <div className={"bottom__right-news-container"}>
                             <span className={"bottom__right-news-container-title"}>Đô thị</span>
-                            <PoliticsNews title={""} url={"https://nld.com.vn/rss/thoi-su.rss"} quantity={1}/>
+                            <PoliticsNews title={""} url={"https://nld.com.vn/rss/thoi-su/do-thi.rss"} quantity={1}/>
                             <div className={"line-bottom-right"}></div>
-                            <PoliticsNewsSub title={""} url={"https://nld.com.vn/rss/thoi-su.rss"} quantity={2}/>
+                            <PoliticsNewsSub title={""} url={"https://nld.com.vn/rss/thoi-su/do-thi.rss"} quantity={2}/>
                         </div>
                     </div>
                 </div>
