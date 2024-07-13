@@ -23,13 +23,17 @@
     font-style: normal;
     font-weight: 600;
     line-height: 150%;
+    color: #4f4f4f;
 }
 
-.small-title{
+.small-title {
     font-size: 1.2rem;
-    font-family: Inter, sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 540;
     margin-top: 34px;
+    cursor: pointer;
+    color: #555;
+    text-decoration: none;
 }
 
 .line{

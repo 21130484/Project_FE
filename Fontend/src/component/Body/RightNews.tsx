@@ -1,7 +1,7 @@
 import React from "react";
 import RssFeed from "../RssFeed";
 
-const PoliticsNews: React.FC<{ title: string, url: string, quantity: number }> = ({ title, url, quantity }) => {
+const RightNews: React.FC<{ title: string, url: string, quantity: number }> = ({ title, url, quantity }) => {
     const rssItems = RssFeed(url, quantity);
 
     return (
@@ -22,4 +22,4 @@ const PoliticsNews: React.FC<{ title: string, url: string, quantity: number }> =
     );
 };
 
-export default PoliticsNews;
+export default RightNews;
