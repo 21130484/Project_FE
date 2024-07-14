@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import Header from "./component/Header";
 import Footer from "./component/Footer";
+import "./css/App.css";
+
 interface ArticleDetailProps {
     title?: string;
     author?: string;

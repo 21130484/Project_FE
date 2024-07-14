@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db59dacb-549a-43e0-9cdc-d3e8812a2154" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ArticleDetail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/ArticleDetail.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/home/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/home/Home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/home/NewsHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/home/NewsHeader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/home/NewsHome.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/home/NewsHome.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/css/Home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/css/Home.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/server.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/server.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,25 +43,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "21130484",
-    "last_opened_file_path": "D:/game/frontend/redux_demo",
-    "list.type.of.created.stylesheet": "SCSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.start.executor": "Run",
-    "ts.external.directory.path": "C:\\Users\\Hieu\\Desktop\\New folder\\Project_FE\\Fontend\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;21130484&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/game/frontend/redux_demo&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Hieu\\Desktop\\New folder\\Project_FE\\Fontend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Hieu\Desktop\New folder\Project_FE\Fontend\src\component\home" />
@@ -125,6 +117,7 @@
       <workItem from="1720581742143" duration="124000" />
       <workItem from="1720928278007" duration="2044000" />
       <workItem from="1720943915596" duration="3044000" />
+      <workItem from="1720963602980" duration="928000" />
     </task>
     <servers />
   </component>
