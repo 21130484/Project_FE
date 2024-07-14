@@ -1,14 +1,16 @@
 import React from "react";
 import useRssFeed from "../crawlRss";
+import { useNavigate } from 'react-router-dom';
 
-const getUrl = (url: string) => {
-    console.log(url);
-    return ;
-};
+
+
 const NewsHome: React.FC<{title:string, url:string, quantity:number}> = ({title, url, quantity}) => {
     const rssItems = useRssFeed(url, quantity);
-    
-
+    const navigate = useNavigate();
+    const handleLinkClick = (link: string) => {
+        const encodedLink = encodeURIComponent(link);
+        navigate(`/articleDetail`, { state: { url: link } });
+    };
     return (
             <>
                 {title.length !== 0 ? (<div className="box-category-top">
@@ -23,9 +25,9 @@ const NewsHome: React.FC<{title:string, url:string, quantity:number}> = ({title,
                     ) : (
                         rssItems.map((item, index) => (
                             <div key={index} className="box-category-item">
-                                <div dangerouslySetInnerHTML={{ __html: item.anchorTag }} />
+                                <div style={{ cursor: 'pointer' }} onClick={() => handleLinkClick(item.link)} dangerouslySetInnerHTML={{ __html: item.anchorTag }} />
                                 <div className="box-category-content">
-                                    <h2 onClick={() => getUrl(item.link)}>{item.title}</h2>
+                                    <h2 style={{ cursor: 'pointer' }} onClick={() => handleLinkClick(item.link)}>{item.title}</h2>
                                 </div>
                                 {index === 0 && <p>{item.textContent}</p>}
                             </div>

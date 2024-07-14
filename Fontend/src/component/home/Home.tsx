@@ -3,8 +3,12 @@ import NewsHome from "./NewsHome";
 import "../../css/main.css"
 import "../../css/Home.css"
 import NewsHeader from "./NewsHeader";
+import Header from "../Header";
+import Footer from "../Footer";
 function Home() {
     return(
+        <>
+        <Header />
         <div id={"home"}>
             <div className="container">
                 <div className="home-flex">
@@ -71,7 +75,8 @@ function Home() {
 
             </div>
         </div>
-
+            <Footer />
+        </>
     );
 }
 

@@ -10,13 +10,13 @@ function Header() {
                 <div className="header_main">
                     <ul className="nav-list">
                         <li className="nav-item">
-                            <p>Trang chủ</p>
+                            <Link to={"/"}><p>Trang chủ</p></Link>
                         </li>
                         <li className="nav-item">
-                            <p>Thời sự</p>
+                            <Link to={"/thoisu"}><p>Thời sự</p></Link>
                         </li>
                         <li className="nav-item">
-                            <p>Quốc tế</p>
+                            <Link to={"/quocte"}><p>Quốc tế</p></Link>
                         </li>
                         <li className="nav-item">
                             <div className="header-search">
@@ -26,14 +26,15 @@ function Header() {
                             </div>
                         </li>
                         <li className="nav-item">
-                            <p>Lao động</p>
+                            <Link to={"/laodong"}><p>Lao động</p></Link>
                         </li>
                         <li className="nav-item">
-                            <p>Sức khỏe</p>
+                            <Link to={"/suckhoe"}><p>Sức khỏe</p></Link>
                         </li>
                         <li className="nav-item">...</li>
                     </ul>
                 </div>
+
             </div>
             <Outlet />
         </header>

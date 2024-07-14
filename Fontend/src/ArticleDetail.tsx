@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import { useLocation } from 'react-router-dom';
+import Header from "./component/Header";
+import Footer from "./component/Footer";
 interface ArticleDetailProps {
     title?: string;
     author?: string;
@@ -8,10 +10,9 @@ interface ArticleDetailProps {
     publishDate?: string;
     detailCmainHtml?: string;
     videoUrl?: string;
-    articleUrl?: string; // Thêm thuộc tính articleUrl để chứa URL của bài báo
 }
 
-const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publishDate, detailCmainHtml, videoUrl, articleUrl }) => {
+const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publishDate, detailCmainHtml, videoUrl }) => {
     const [articleTitle, setArticleTitle] = useState(title || 'Untitled Article');
     const [articleAuthor, setArticleAuthor] = useState(author || 'Anonymous');
     const [articleSapo, setArticleSapo] = useState(sapo || '');
@@ -21,10 +22,13 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publ
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+    const location = useLocation();
+    const { url } = location.state || {};
+
     useEffect(() => {
         const fetchArticle = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/scrape?url=${encodeURIComponent(articleUrl || '')}`);
+                const response = await axios.get(`http://localhost:3002/scrape?url=${encodeURIComponent(url)}`);
                 const { title, author, sapo, publishDate, detailCmainHtml, videoUrl } = response.data;
 
                 setArticleTitle(title || 'Untitled Article');
@@ -43,7 +47,7 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publ
         };
 
         fetchArticle();
-    }, [articleUrl]); // Thêm articleUrl vào dependencies để useEffect chạy lại khi articleUrl thay đổi
+    }, [url]); // Thêm articleUrl vào dependencies để useEffect chạy lại khi articleUrl thay đổi
 
     if (loading) {
         return <p>Loading...</p>;
@@ -54,8 +58,10 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publ
     }
 
     return (
+        <>
+        <Header/>
         <div className="article-detail">
-            <h1><a href={articleUrl} target="_blank" rel="noopener noreferrer">{articleTitle}</a></h1>
+            <h1><a href={url} target="_blank" rel="noopener noreferrer">{articleTitle}</a></h1>
             <p><strong>{articleAuthor}</strong></p>
             <p><strong>{articleSapo}</strong></p>
             <p><strong>{articlePublishDate}</strong></p>
@@ -69,6 +75,8 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publ
             )}
             <div className="content" dangerouslySetInnerHTML={{ __html: articleDetailCmainHtml }}></div>
         </div>
+        <Footer/>
+        </>
     );
 };
 
@@ -79,7 +87,6 @@ ArticleDetail.defaultProps = {
     publishDate: '',
     detailCmainHtml: '',
     videoUrl: '',
-    articleUrl: '', // Mặc định articleUrl là chuỗi rỗng
 };
 
 export default ArticleDetail;
