@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from "./component/Header";
 import Footer from "./component/Footer";
-import NewsPage from "./component/Body/NewsPage";
+import NewsPage from "./component/Body/News/NewsPage";
 
 
 

@@ -1,25 +1,25 @@
 import React from "react";
 import {all} from "axios";
-import "../../css/main.css";
-import "../../css/Classify.css";
+import "../../../css/main.css";
+import "../../../css/Classify.css";
 import NewsMain from "./NewsMain";
 import SmallNews from "./SmallNews";
 import NewsList from "./NewsList";
 import RightNews from "./RightNews";
 import RightSmallNews from "./RightSmallNews";
 
-function Social() {
+function Politics() {
     return (
         <div id="Body">
             <div className="container">
                 <div className={"top__flex-container"}>
                     <div className={"top__center-container"}>
                         <div className={"news-container"}>
-                            <NewsMain title="Thời sự" url="https://nld.com.vn/rss/thoi-su/xa-hoi.rss" quantity={1}/>
+                            <NewsMain title="Thời sự" url="https://nld.com.vn/rss/thoi-su/chinh-tri.rss" quantity={1}/>
 
                             <div className={"line-element"}></div>
 
-                            <SmallNews title="" url="https://nld.com.vn/rss/thoi-su/xa-hoi.rss" quantity={3}/>
+                            <SmallNews title="" url="https://nld.com.vn/rss/thoi-su/chinh-tri.rss" quantity={3}/>
                         </div>
                     </div>
                 </div>
@@ -28,14 +28,14 @@ function Social() {
 
                 <div className={"bottom__flex-container"}>
                     <div className={"bottom__center-container"}>
-                        <NewsList title="" url="https://nld.com.vn/rss/thoi-su/xa-hoi.rss" quantity={30}/>
+                        <NewsList title="" url="https://nld.com.vn/rss/thoi-su/chinh-tri.rss"/>
                     </div>
                     <div className={"bottom__right-container"}>
                         <div className={"bottom__right-news-container"}>
-                            <span className={"bottom__right-news-container-title"}>Chính trị</span>
-                            <RightNews title={""} url={"https://nld.com.vn/rss/thoi-su/chinh-tri.rss"} quantity={1}/>
+                            <span className={"bottom__right-news-container-title"}>Xã hội</span>
+                            <RightNews title={"Tin chính"} url={"https://nld.com.vn/rss/thoi-su/xa-hoi.rss"} quantity={1}/>
                             <div className={"line-bottom-right"}></div>
-                            <RightSmallNews title={""} url={"https://nld.com.vn/rss/thoi-su/chinh-tri.rss"} quantity={2}/>
+                            <RightSmallNews title={"Tin phụ"} url={"https://nld.com.vn/rss/thoi-su/xa-hoi.rss"} quantity={2}/>
                         </div>
 
                         <div className={"bottom__right-news-container"}>
@@ -51,4 +51,4 @@ function Social() {
     );
 }
 
-export default Social;
+export default Politics;

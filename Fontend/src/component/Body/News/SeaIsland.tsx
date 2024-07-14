@@ -1,7 +1,7 @@
 import React from "react";
 import {all} from "axios";
-import "../../css/main.css";
-import "../../css/Classify.css";
+import "../../../css/main.css";
+import "../../../css/Classify.css";
 import NewsMain from "./NewsMain";
 import SmallNews from "./SmallNews";
 import NewsList from "./NewsList";
@@ -28,7 +28,7 @@ function SeaIsland() {
 
                 <div className={"bottom__flex-container"}>
                     <div className={"bottom__center-container"}>
-                        <NewsList title="" url=" https://nld.com.vn/rss/bien-dao.rss" quantity={30}/>
+                        <NewsList title="" url=" https://nld.com.vn/rss/bien-dao.rss"/>
                     </div>
                     <div className={"bottom__right-container"}></div>
                 </div>

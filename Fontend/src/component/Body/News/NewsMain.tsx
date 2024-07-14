@@ -1,5 +1,5 @@
 import React from "react";
-import RssFeed from "../RssFeed";
+import RssFeed from "../../RssFeed";
 
 const NewsMain: React.FC<{ title: string, url: string, quantity: number }> = ({ title, url, quantity }) => {
     const rssItems = RssFeed(url, quantity);
@@ -13,7 +13,7 @@ const NewsMain: React.FC<{ title: string, url: string, quantity: number }> = ({ 
                     <div key={index} className="main__new">
                             <div dangerouslySetInnerHTML={{__html: item.anchorTag}}/>
                         <div className={"main__new-contain"}>
-                            <h1 className="main__new-title">{item.title}</h1>
+                            <a href={""} className="main__new-title">{item.title}</a>
                             <p className="main__new-text">{item.textContent}</p>
                         </div>
                     </div>

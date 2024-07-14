@@ -1,8 +1,8 @@
 import React from "react";
 import {all} from "axios";
 import { Routes, Route, Link } from "react-router-dom";
-import "../../css/main.css";
-import "../../css/Classify.css";
+import "../../../css/main.css";
+import "../../../css/Classify.css";
 import News from "./News";
 import Politics from "./Politics";
 import Social from "./Social";

@@ -9,6 +9,8 @@ interface RssItem {
 }
 const RssFeed = (url: string, quantity: number): RssItem[] => {
     const [rssItems, setRssItems] = useState<RssItem[]>([]);
+    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,6 +26,7 @@ const RssFeed = (url: string, quantity: number): RssItem[] => {
                 } else {
                     setRssItems(data);
                 }
+
             } catch (error) {
                 console.error('Lỗi khi lấy dữ liệu RSS:', error);
             }

@@ -1,5 +1,6 @@
 import React from "react";
-import RssFeed from "../RssFeed";
+import RssFeed from "../../RssFeed";
+import NewsMain from "./NewsMain";
 
 const SmallNews: React.FC<{ title: string, url: string, quantity: number }> = ({ title, url, quantity }) => {
     const rssItems = RssFeed(url, quantity);
