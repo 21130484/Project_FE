@@ -5,10 +5,10 @@ import "../../css/Home.css"
 import NewsHeader from "./NewsHeader";
 import Header from "../Header";
 import Footer from "../Footer";
+import BackToTop from "../BackToTop";
 function Home() {
     return(
         <>
-        <Header />
         <div id={"home"}>
             <div className="container">
                 <div className="home-flex">
@@ -75,7 +75,6 @@ function Home() {
 
             </div>
         </div>
-            <Footer />
         </>
     );
 }

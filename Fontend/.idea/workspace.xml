@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="db59dacb-549a-43e0-9cdc-d3e8812a2154" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ArticleDetail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/ArticleDetail.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +46,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;21130484&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/game/frontend/redux_demo&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Hieu/Desktop/New folder/New folder (2)/Project_FE&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
@@ -118,6 +116,11 @@
       <workItem from="1720928278007" duration="2044000" />
       <workItem from="1720943915596" duration="3044000" />
       <workItem from="1720963602980" duration="928000" />
+      <workItem from="1720965175643" duration="48000" />
+      <workItem from="1720965808744" duration="103000" />
+      <workItem from="1720966187004" duration="226000" />
+      <workItem from="1720966506698" duration="73000" />
+      <workItem from="1720967309152" duration="31000" />
     </task>
     <servers />
   </component>

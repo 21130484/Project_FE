@@ -61,7 +61,6 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publ
 
     return (
         <>
-        <Header/>
         <div className="article-detail">
             <h1><a href={url} target="_blank" rel="noopener noreferrer">{articleTitle}</a></h1>
             <p><strong>{articleAuthor}</strong></p>
@@ -77,7 +76,6 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publ
             )}
             <div className="content" dangerouslySetInnerHTML={{ __html: articleDetailCmainHtml }}></div>
         </div>
-        <Footer/>
         </>
     );
 };
