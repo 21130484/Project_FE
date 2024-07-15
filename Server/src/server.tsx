@@ -3,6 +3,7 @@ import axios from 'axios';
 import cheerio from 'cheerio';
 import cors from 'cors';
 import { parseString } from 'xml2js';
+
 import bodyParser from 'body-parser';
 
 const nodemailer = require('nodemailer'); // Use require instead of import
@@ -11,6 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3002;
 
 app.use(cors());
+
 app.use(bodyParser.json());
 
 interface RssItem {
@@ -101,12 +103,14 @@ app.get('/rss', async (req: Request, res: Response) => {
         });
     } catch (error) {
         console.error('Failed to fetch RSS data:', error);
+
         res.status(500).json({ error: 'Failed to fetch RSS data' });
     }
 });
 
 app.get('/scrape', async (req: Request, res: Response) => {
     try {
+
         const { url } = req.query;
         if (!url || typeof url !== 'string') {
             return res.status(400).json({ error: 'Missing or invalid URL parameter' });

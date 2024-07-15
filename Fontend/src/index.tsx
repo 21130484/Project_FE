@@ -1,3 +1,4 @@
+// @ts-ignore
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { RouterProvider } from 'react-router-dom';
@@ -9,3 +10,4 @@ ReactDOM.render(
     </React.StrictMode>,
     document.getElementById('root') // Add the container element here
 );
+

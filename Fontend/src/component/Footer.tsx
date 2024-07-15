@@ -3,6 +3,7 @@ import "../css/Footer.css"
 import "../css/main.css"
 function Footer() {
     return(
+
         <footer id={"footer"}>
             <div className={"container"}>
                 <a href="/" className="footer__logo">
