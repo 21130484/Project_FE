@@ -11,12 +11,13 @@ const SmallNews: React.FC<{ title: string, url: string, quantity: number }> = ({
                 <p>Đang tải dữ liệu...</p>
             ) : (
                 rssItems.map((item, index) => (
+                    index >= 1 && (
                     <div key={index} className="small-news-item">
                         <div dangerouslySetInnerHTML={{ __html: item.anchorTag }} />
                         <span className="small-news-title">{item.title}</span>
                     </div>
                 ))
-            )}
+                ))}
         </div>
     );
 };

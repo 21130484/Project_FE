@@ -7,11 +7,11 @@ const NewsList: React.FC<{ title: string, url: string }> = ({ title, url }) => {
 
     return (
         <div className="list-news">
-            <h2>Tin Thời Sự</h2>
             {loading ? (
                 <p>Đang tải dữ liệu...</p>
             ) : (
                 displayItems.map((item, index) => (
+                    index >= 4 && (
                     <div key={index} className="bottom__news">
                         <div dangerouslySetInnerHTML={{ __html: item.anchorTag }} />
                         <div className="bottom__news-text">
@@ -20,7 +20,7 @@ const NewsList: React.FC<{ title: string, url: string }> = ({ title, url }) => {
                         </div>
                     </div>
                 ))
-            )}
+            ))}
             {hasMore && (
                 <button  onClick={fetchMoreData} className="load-more-button">
                     Xem thêm

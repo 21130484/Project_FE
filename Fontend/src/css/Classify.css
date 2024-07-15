@@ -13,13 +13,11 @@
 .title{
     display: flex;
     height: 63px;
-    width: 500px;
-    justify-content: space-around;
 }
 
 .main-title{
     margin-top: 12px;
-    font-size: 2.6rem;
+    font-size: 2.5rem;
     font-style: normal;
     font-weight: 600;
     line-height: 150%;
@@ -28,24 +26,18 @@
 }
 
 .small-title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-family: Inter, sans-serif;
     font-weight: 550;
     margin-top: 34px;
     cursor: pointer;
     color: #555;
     text-decoration: none;
+    margin-left: 20px;
 }
 
 .small-title:focus {
-    font-size: 1.2rem;
-    font-family: Inter, sans-serif;
-    font-weight: 540;
-    margin-top: 34px;
-    cursor: pointer;
-    color: #555;
-    text-decoration: none;
-    text-decoration: underline;
+    text-decoration: underline 1.5px solid;
 }
 
 .line{
@@ -107,7 +99,7 @@
     display: block;
     color: var(--text-color);
     font-family: Inter, sans-serif;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-style: normal;
     font-weight: 600;
     line-height: 150%;
@@ -180,7 +172,7 @@
     display: block;
     color: var(--text-color);
     font-family: Inter, sans-serif;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-style: normal;
     font-weight: 600;
     line-height: 150%;
@@ -337,11 +329,11 @@
     height: 200px;
 }
 
-.politics img{
+.right-new img{
     width: 303px;
     height: 190px;
     object-fit: cover;
-    margin-top: 15px;
+    margin: 15px 0 -20px 0;
 }
 .bottom__right-news-container-sup img{
     object-fit: cover;
@@ -364,6 +356,24 @@
 }
 
 .load-more-button:active{
+    width: 870px;
+    height: 40px;
+    border: 1px solid #ebebeb;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: Roboto, sans-serif;
+    color: #777777;
+    border-radius: 4px;
+    margin: 40px 0 20px 0;
+    display: block;
     background-color: #e6e6e6;
+}
+
+.nav-item{
+    color: var(--white-color);
+    font-family: Inter, sans-serif;
+    background-color: white;
+    font-weight: 600;
+    font-size: 1.2rem;
 }
 
