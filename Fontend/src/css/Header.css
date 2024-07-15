@@ -1,5 +1,6 @@
 #header {
   background-color: #000000;
+  position: relative;
 }
 
 .header_main {
@@ -34,6 +35,57 @@
 .header_main ul.nav-list li.nav-item p:hover {
   background-color: #fff;
   color: #000;
+}
+
+#header-menu {
+  z-index: 9999;
+  position: absolute;
+  top: 100;
+  width: 100%;
+  background: #fafafa;
+  display: none;
+}
+#header-menu .header-scroll {
+  height: 480px;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+#header-menu .header-scroll .header-flex {
+  display: flex;
+  padding: 20px;
+}
+
+.header__mm-cate {
+  display: flex;
+  flex-wrap: wrap;
+}
+.header__mm-cate .box {
+  margin-right: 15px;
+  width: 15%;
+  margin-top: 10px;
+}
+.header__mm-cate .box .title {
+  margin-bottom: 8px;
+  display: inline-block;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #292929;
+  border-bottom: 1px solid #005bb2;
+}
+.header__mm-cate .box .list {
+  max-height: 125px;
+  overflow: hidden;
+}
+.header__mm-cate .box .list .item {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #454545;
+  display: block;
+  margin-bottom: 12px;
 }
 
 /*# sourceMappingURL=Header.css.map */

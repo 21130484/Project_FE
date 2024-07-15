@@ -1,18 +1,23 @@
+// src/App.tsx
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Outlet } from "react-router-dom";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
-import NewsPage from "./component/Body/Topics/NewsPage";
-import InternationalPage from "./component/Body/Topics/InternationalPage";
+import BackToTop from "./component/BackToTop";
+import FeedbackPopup from "./component/FeedbackPopup";
 
 const App: React.FC = () => {
     return (
         <div className="App">
             <Header />
-            <NewsPage></NewsPage>
+            <main>
+                <Outlet />
+            </main>
+            <BackToTop />
             <Footer />
+            <FeedbackPopup />
         </div>
     );
-}
+};
 
 export default App;

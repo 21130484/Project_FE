@@ -11,7 +11,10 @@
     "cheerio": "^1.0.0-rc.10",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "xml2js": "^0.6.2"
+    "xml2js": "^0.6.2",
+    "puppeteer": "^10.2.0",
+    "nodemailer": "^6.4.18",
+    "body-parser": "^1.19.0"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
