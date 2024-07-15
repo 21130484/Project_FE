@@ -92,6 +92,7 @@
 }
 
 .box-category-content h2 {
+  cursor: pointer;
   color: #000;
   font-family: Merriweather;
   font-size: 18px;

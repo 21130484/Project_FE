@@ -1883,3 +1883,11 @@ p {
 .d-bg-short{
   display: none;
 }
+.VCSortableInPreviewMode[type="RelatedNewsBox"],
+ .VCSortableInPreviewMode[type="RelatedNewsBox"] * {
+   display: none !important;
+ }
+.read-original {
+  color: blue;
+  text-decoration: underline;
+}

@@ -1,7 +1,5 @@
-// src/ArticleDetail.tsx
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import './css/RelatedItem.css';
 import './css/App.css';
 import { useLocation } from 'react-router-dom';
 
@@ -18,16 +16,16 @@ interface ArticleDetailProps {
 }
 
 const ArticleDetail: React.FC<ArticleDetailProps> = ({
-    title,
-    author,
-    sapo,
-    publishDate,
-    detailCmainHtml,
-    articleUrl,
-    detailHistory,
-    relatedItemsHtml,
-    detailTr
-}) => {
+                                                         title,
+                                                         author,
+                                                         sapo,
+                                                         publishDate,
+                                                         detailCmainHtml,
+                                                         articleUrl,
+                                                         detailHistory,
+                                                         relatedItemsHtml,
+                                                         detailTr
+                                                     }) => {
     const [currentArticleUrl, setCurrentArticleUrl] = useState(articleUrl || '');
     const [articleTitle, setArticleTitle] = useState(title || 'Tiêu đề');
     const [articleAuthor, setArticleAuthor] = useState(author || 'Tác giả');
@@ -92,28 +90,14 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
         }
     }, [currentArticleUrl, fetchArticle]);
 
-    const handleRelatedLinkClick = useCallback((event: MouseEvent) => {
+    const handleRelatedLinkClick = useCallback((event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         event.preventDefault();
-        const target = event.currentTarget as HTMLAnchorElement;
-        let newUrl = target.getAttribute('href');
-        if (newUrl && !newUrl.startsWith('https://nld.com.vn')) {
-            newUrl = `https://nld.com.vn${newUrl}`;
+        const target = event.target as HTMLAnchorElement;
+        const newUrl = target.getAttribute('href');
+        if (newUrl) {
+            setCurrentArticleUrl(newUrl);
         }
-        setCurrentArticleUrl(newUrl || '');
     }, []);
-
-    useEffect(() => {
-        const relatedLinks = document.querySelectorAll<HTMLAnchorElement>('.detail__related a, .detail__cmain-main a');
-        relatedLinks.forEach(link => {
-            link.addEventListener('click', handleRelatedLinkClick);
-        });
-
-        return () => {
-            relatedLinks.forEach(link => {
-                link.removeEventListener('click', handleRelatedLinkClick);
-            });
-        };
-    }, [handleRelatedLinkClick]);
 
     if (loading) {
         return <p>Đang tải...</p>;
@@ -131,11 +115,11 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
 
     return (
         <div className="article-detail">
-            <h1><a href={currentArticleUrl} target="_blank" rel="noopener noreferrer">{articleTitle}</a></h1>
+            <h1>{articleTitle}</h1>
             <p><strong>{articleAuthor}</strong></p>
             <p><strong>{articlePublishDate}</strong></p>
             <p><strong>{articleSapo}</strong></p>
-            <div className="detail__cmain-main" dangerouslySetInnerHTML={{__html: articleDetailCmainHtml}}></div>
+            <div className="detail__cmain-main" dangerouslySetInnerHTML={{ __html: articleDetailCmainHtml }}></div>
             {videoSrc && (
                 <div className="video-container">
                     <video
@@ -145,14 +129,16 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
                         src={`https://${videoSrc}`}
                         title="Video"
                     ></video>
-                    {videoCaption && <p style={{textAlign: 'center'}}>{videoCaption}</p>}
+                    {videoCaption && <p style={{ textAlign: 'center' }}>{videoCaption}</p>}
                 </div>
             )}
-            <div className="detail__tr" dangerouslySetInnerHTML={{__html: articleDetailTr}}></div>
-            <div className="detail__history" dangerouslySetInnerHTML={{__html: articleDetailHistory}}></div>
-            {articleRelatedItemsHtml && (
-                <div className="detail__related" dangerouslySetInnerHTML={{__html: articleRelatedItemsHtml}}></div>
-            )}
+            {/*<div className="detail__tr" dangerouslySetInnerHTML={{ __html: articleDetailTr }}></div>*/}
+            {/*<div className="detail__history" dangerouslySetInnerHTML={{ __html: articleDetailHistory }}></div>*/}
+            {/*{articleRelatedItemsHtml && (*/}
+            {/*    <div className="detail__related" onClick={()=>handleRelatedLinkClick} dangerouslySetInnerHTML={{ __html: articleRelatedItemsHtml }}></div>*/}
+            {/*)}*/}
+            <p>Đọc bài gốc tại <a href={currentArticleUrl} target="_blank" rel="noopener noreferrer"
+                                  className="read-original">đây</a></p>
         </div>
     );
 };

@@ -6,7 +6,7 @@ $font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
   text-decoration: none;
   list-style-type: none;
-  font-family: $font-family;
+  font-family: $font-family !important;
   color: #454545;
   line-height: 150%
 }

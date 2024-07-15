@@ -1738,4 +1738,14 @@ p {
   display: none;
 }
 
+.VCSortableInPreviewMode[type=RelatedNewsBox],
+.VCSortableInPreviewMode[type=RelatedNewsBox] * {
+  display: none !important;
+}
+
+.read-original {
+  color: blue;
+  text-decoration: underline;
+}
+
 /*# sourceMappingURL=App.css.map */

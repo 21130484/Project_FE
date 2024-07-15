@@ -78,6 +78,7 @@ app.get('/rss', async (req: Request, res: Response) => {
         const { data } = await axios.get(rssUrl);
         parseString(data, (err: Error | null, result: any) => {
             if (err) {
+                console.error('Error parsing RSS data:', err);
                 return res.status(500).json({ error: 'Error parsing RSS data' });
             }
 
@@ -100,10 +101,11 @@ app.get('/rss', async (req: Request, res: Response) => {
             res.json(items);
         });
     } catch (error) {
-        console.error('Failed to fetch RSS data:', error);
-        res.status(500).json({ error: 'Failed to fetch RSS data' });
+        console.error('Failed to fetch or parse RSS data:', error);
+        res.status(500).json({ error: 'Failed to fetch or parse RSS data' });
     }
 });
+
 
 app.get('/scrape', async (req: Request, res: Response) => {
     try {
