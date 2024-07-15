@@ -1,6 +1,7 @@
 // src/ArticleDetail.tsx
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
 interface ArticleDetailProps {
     title?: string;
@@ -15,37 +16,40 @@ interface ArticleDetailProps {
 }
 
 const ArticleDetail: React.FC<ArticleDetailProps> = ({
-                                                         title,
-                                                         author,
-                                                         sapo,
-                                                         publishDate,
-                                                         detailCmainHtml,
-                                                         articleUrl,
-                                                         detailHistory,
-                                                         relatedItemsHtml,
-                                                         detailTr
-                                                     }) => {
+    title,
+    author,
+    sapo,
+    publishDate,
+    detailCmainHtml,
+    articleUrl,
+    detailHistory,
+    relatedItemsHtml,
+    detailTr
+}) => {
     const [currentArticleUrl, setCurrentArticleUrl] = useState(articleUrl || '');
     const [articleTitle, setArticleTitle] = useState(title || 'Untitled Article');
     const [articleAuthor, setArticleAuthor] = useState(author || 'Anonymous');
     const [articleSapo, setArticleSapo] = useState(sapo || '');
     const [articlePublishDate, setArticlePublishDate] = useState(publishDate || '');
     const [articleDetailCmainHtml, setArticleDetailCmainHtml] = useState(detailCmainHtml || '');
-    const [articleDetailHistory, setDetailHistory] = useState(detailHistory || '');
+    const [articleDetailHistory, setArticleDetailHistory] = useState(detailHistory || '');
     const [articleRelatedItemsHtml, setArticleRelatedItemsHtml] = useState(relatedItemsHtml || '');
     const [articleDetailTr, setArticleDetailTr] = useState(detailTr || '');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    const fetchArticle = useCallback(async (url: string) => {
-        if (!url) {
+    const location = useLocation();
+    const { state } = location;
+
+    const fetchArticle = useCallback(async () => {
+        if (!currentArticleUrl) {
             setError('Article URL is not provided');
             setLoading(false);
             return;
         }
 
         try {
-            const response = await axios.get(`http://localhost:3002/scrape?url=${encodeURIComponent(url)}`);
+            const response = await axios.get(`http://localhost:3002/scrape?url=${encodeURIComponent(currentArticleUrl)}`);
             const {
                 title,
                 author,
@@ -62,7 +66,7 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
             setArticleSapo(sapo || '');
             setArticlePublishDate(publishDate || '');
             setArticleDetailCmainHtml(detailCmainHtml || '');
-            setDetailHistory(detailHistory || '');
+            setArticleDetailHistory(detailHistory || '');
             setArticleRelatedItemsHtml(relatedItemsHtml || '');
             setArticleDetailTr(detailTr || '');
         } catch (error) {
@@ -71,12 +75,18 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
         } finally {
             setLoading(false);
         }
-    }, []);
+    }, [currentArticleUrl]);
+
+    useEffect(() => {
+        if (state && state.url) {
+            setCurrentArticleUrl(state.url);
+        }
+    }, [state]);
 
     useEffect(() => {
         if (currentArticleUrl) {
             setLoading(true);
-            fetchArticle(currentArticleUrl);
+            fetchArticle();
         }
     }, [currentArticleUrl, fetchArticle]);
 
@@ -84,30 +94,24 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
         event.preventDefault();
         const target = event.currentTarget as HTMLAnchorElement;
         let newUrl = target.getAttribute('href');
-        console.log('Link clicked:', newUrl); // Debugging log
-        if (newUrl) {
-            if (!newUrl.startsWith('https://nld.com.vn')) {
-                newUrl = `https://nld.com.vn${newUrl}`;
-            }
-            console.log('Updated URL:', newUrl); // Debugging log
-            setCurrentArticleUrl(newUrl);
+        if (newUrl && !newUrl.startsWith('https://nld.com.vn')) {
+            newUrl = `https://nld.com.vn${newUrl}`;
         }
+        setCurrentArticleUrl(newUrl || '');
     }, []);
 
     useEffect(() => {
         const relatedLinks = document.querySelectorAll<HTMLAnchorElement>('.detail__related a, .detail__cmain-main a');
-
         relatedLinks.forEach(link => {
             link.addEventListener('click', handleRelatedLinkClick);
         });
 
-        // Cleanup function to remove event listeners
         return () => {
             relatedLinks.forEach(link => {
                 link.removeEventListener('click', handleRelatedLinkClick);
             });
         };
-    }, [handleRelatedLinkClick, articleRelatedItemsHtml, articleDetailCmainHtml]);
+    }, [handleRelatedLinkClick]);
 
     if (loading) {
         return <p>Loading...</p>;
@@ -143,16 +147,15 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
                 </div>
             )}
             <div className="detail__tr" dangerouslySetInnerHTML={{__html: articleDetailTr}}></div>
-            <div>
-                <div className="detail__history" dangerouslySetInnerHTML={{__html: articleDetailHistory}}></div>
-            </div>
+            <div className="detail__history" dangerouslySetInnerHTML={{__html: articleDetailHistory}}></div>
             {articleRelatedItemsHtml && (
                 <div className="detail__related" dangerouslySetInnerHTML={{__html: articleRelatedItemsHtml}}></div>
             )}
         </div>
     );
-}
-    ArticleDetail.defaultProps = {
+};
+
+ArticleDetail.defaultProps = {
     title: 'Untitled Article',
     author: 'Anonymous',
     sapo: '',

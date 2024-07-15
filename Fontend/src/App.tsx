@@ -1,17 +1,20 @@
-// src/App.tsx
 import React from 'react';
-import './css/App.css';
-import Header from './component/Header';
-import Footer from './component/Footer';
-import ArticleDetail from './ArticleDetail';
-import './css/RelatedItem.css';
-
-const App = () => (
-    <div>
-        <Header />
-        <ArticleDetail />
-        <Footer />
-    </div>
-);
+import {Outlet, Router} from "react-router-dom";
+import BackToTop from "./component/BackToTop";
+import Header from "./component/Header";
+import Footer from "./component/Footer";
+import ArticleDetail from "./ArticleDetail";
+const App: React.FC = () => {
+    return (
+        <div className="App">
+            <Header/>
+            <main>
+                <Outlet/>
+            </main>
+            <BackToTop/>
+            <Footer/>
+        </div>
+    );
+};
 
 export default App;
