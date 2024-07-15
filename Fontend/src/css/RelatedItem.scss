@@ -35,6 +35,9 @@ $font-family_2: Inter;
 $font-family_3: Merriweather;
 $font-family_4: Bungee Shade;
 
+.box-category[data-layout="10"] .box-category-middle .box-category-item .box-category-time {
+  display: none;
+}
 .detail__related {
   border-radius: 4px;
   border: 1px solid var(--neutral-color-30, #ebebeb);
@@ -1209,7 +1212,6 @@ $font-family_4: Bungee Shade;
           }
         }
         .box-category-time {
-          display: inline-block;
           color: $color_13;
           font-family: $font-family_2;
           font-size: 12px;

@@ -1,20 +1,17 @@
 // src/App.tsx
 import React from 'react';
 import './css/App.css';
-import Header from "./component/Header";
-import Footer from "./component/Footer";
-import Home from "./component/home/Home";
-import ArticleDetail from "./ArticleDetail";
+import Header from './component/Header';
+import Footer from './component/Footer';
+import ArticleDetail from './ArticleDetail';
 import './css/RelatedItem.css';
 
-function App() {
-  return (
+const App = () => (
     <div>
-      <Header></Header>
-        <ArticleDetail></ArticleDetail>
-      <Footer></Footer>
+        <Header />
+        <ArticleDetail />
+        <Footer />
     </div>
-  );
-}
+);
 
 export default App;

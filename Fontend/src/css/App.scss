@@ -1375,6 +1375,7 @@ $border-bottom-color_1: #fff;
       }
     }
     VideoCMS_Caption {
+      display:none;
       font-size: 16px;
       line-height: 24px;
       transition: 1s;
@@ -1866,7 +1867,12 @@ p {
   font-family: Merriweather;
   font-size: 17px;
   font-style: normal;
-  font-weight: 700;
   line-height: 28px;
   margin-bottom: 8px
+}
+.detail__news-other {
+  border-top: 3px solid #ec4989;
+  position: relative;
+  margin-top: 45px;
+  padding-top: 25px;
 }
