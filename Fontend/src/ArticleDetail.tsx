@@ -1,6 +1,8 @@
 // src/ArticleDetail.tsx
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
+import './css/RelatedItem.css';
+import './css/App.css';
 import { useLocation } from 'react-router-dom';
 
 interface ArticleDetailProps {
@@ -27,8 +29,8 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
     detailTr
 }) => {
     const [currentArticleUrl, setCurrentArticleUrl] = useState(articleUrl || '');
-    const [articleTitle, setArticleTitle] = useState(title || 'Untitled Article');
-    const [articleAuthor, setArticleAuthor] = useState(author || 'Anonymous');
+    const [articleTitle, setArticleTitle] = useState(title || 'Tiêu đề');
+    const [articleAuthor, setArticleAuthor] = useState(author || 'Tác giả');
     const [articleSapo, setArticleSapo] = useState(sapo || '');
     const [articlePublishDate, setArticlePublishDate] = useState(publishDate || '');
     const [articleDetailCmainHtml, setArticleDetailCmainHtml] = useState(detailCmainHtml || '');
@@ -61,8 +63,8 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
                 detailTr
             } = response.data;
 
-            setArticleTitle(title || 'Untitled Article');
-            setArticleAuthor(author || 'Anonymous');
+            setArticleTitle(title || 'Tiêu đề');
+            setArticleAuthor(author || 'Tác giả');
             setArticleSapo(sapo || '');
             setArticlePublishDate(publishDate || '');
             setArticleDetailCmainHtml(detailCmainHtml || '');
@@ -70,8 +72,8 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
             setArticleRelatedItemsHtml(relatedItemsHtml || '');
             setArticleDetailTr(detailTr || '');
         } catch (error) {
-            console.error('Error fetching the article:', error);
-            setError('Failed to fetch article');
+            console.error('Không thể lấy dữ liệu...:', error);
+            setError('Không thể lấy dữ liệu');
         } finally {
             setLoading(false);
         }
@@ -114,11 +116,11 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
     }, [handleRelatedLinkClick]);
 
     if (loading) {
-        return <p>Loading...</p>;
+        return <p>Đang tải...</p>;
     }
 
     if (error) {
-        return <p>Error: {error}</p>;
+        return <p>Lỗi: {error}</p>;
     }
 
     // Extract video URL from the raw HTML
@@ -156,12 +158,12 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
 };
 
 ArticleDetail.defaultProps = {
-    title: 'Untitled Article',
-    author: 'Anonymous',
+    title: 'Tiêu đề',
+    author: 'Tác giả',
     sapo: '',
     publishDate: '',
     detailCmainHtml: '',
-    articleUrl: 'https://nld.com.vn/nong-giai-de-thi-ngu-van-tot-nghiep-thpt-196240627110816359.htm',
+    articleUrl: '',
     detailHistory: '',
     relatedItemsHtml: '',
     detailTr: '',

@@ -1,18 +1,21 @@
+// src/App.tsx
 import React from 'react';
-import {Outlet, Router} from "react-router-dom";
-import BackToTop from "./component/BackToTop";
+import { Outlet } from "react-router-dom";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
-import ArticleDetail from "./ArticleDetail";
+import BackToTop from "./component/BackToTop";
+import FeedbackPopup from "./component/FeedbackPopup";
+
 const App: React.FC = () => {
     return (
         <div className="App">
-            <Header/>
+            <Header />
             <main>
-                <Outlet/>
+                <Outlet />
             </main>
-            <BackToTop/>
-            <Footer/>
+            <BackToTop />
+            <Footer />
+            <FeedbackPopup />
         </div>
     );
 };
