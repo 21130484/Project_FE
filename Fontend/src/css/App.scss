@@ -1876,3 +1876,10 @@ p {
   margin-top: 45px;
   padding-top: 25px;
 }
+.VCSortableInPreviewMode[type="VideoStream"],
+.VCSortableInPreviewMode[type="VideoStream"] * {
+  display: none !important;
+}
+.d-bg-short{
+  display: none;
+}
