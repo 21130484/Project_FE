@@ -68,13 +68,13 @@ app.get('/rss', async (req: Request, res: Response) => {
     try {
         const rssUrl = req.query.url as string;
         if (!rssUrl) {
-            return res.status(400).json({ error: 'URL is required' });
+            return res.status(400).json({error: 'URL is required'});
         }
 
-        const { data } = await axios.get(rssUrl);
+        const {data} = await axios.get(rssUrl);
         parseString(data, (err: Error | null, result: any) => {
             if (err) {
-                return res.status(500).json({ error: 'Error parsing RSS data' });
+                return res.status(500).json({error: 'Error parsing RSS data'});
             }
 
             const items: RssItem[] = result.rss.channel[0].item.map((item: any) => {
@@ -147,6 +147,13 @@ app.get('/scrape', async (req: Request, res: Response) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+                res.json({title, author, sapo, publishDate, detailCmainHtml, videoUrl, videoData, videoCaption});
+            } catch (error) {
+                console.error('Error during scraping:', error);
+                res.status(500).json({error: 'Failed to scrape the data'});
+            }
+        });
+
+        app.listen(PORT, () => {
+            console.log(`Server is running on port ${PORT}`);
+        });

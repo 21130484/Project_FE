@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+import Header from "./component/Header";
+import Footer from "./component/Footer";
+import "./css/App.css";
 
 interface RelatedItem {
     relatedTitle: string;
@@ -16,23 +20,9 @@ interface ArticleDetailProps {
     detailCmainHtml?: string;
     detailHistory?: string;
     videoUrl?: string;
-    articleUrl?: string;
-    relatedItemsHtml?: string;
-    detailTr?: string;
 }
 
-const ArticleDetail: React.FC<ArticleDetailProps> = ({
-                                                         title,
-                                                         author,
-                                                         sapo,
-                                                         publishDate,
-                                                         detailCmainHtml,
-                                                         videoUrl,
-                                                         articleUrl,
-                                                         detailHistory,
-                                                         relatedItemsHtml,
-                                                         detailTr
-                                                     }) => {
+const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publishDate, detailCmainHtml, videoUrl }) => {
     const [articleTitle, setArticleTitle] = useState(title || 'Untitled Article');
     const [articleAuthor, setArticleAuthor] = useState(author || 'Anonymous');
     const [articleSapo, setArticleSapo] = useState(sapo || '');
@@ -45,6 +35,9 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+    const location = useLocation();
+    const { url } = location.state || {};
+
     useEffect(() => {
         const fetchArticle = async () => {
             if (!articleUrl) {
@@ -54,8 +47,8 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
             }
 
             try {
-                const response = await axios.get(`http://localhost:3002/scrape?url=${articleUrl}`);
-                const { title, author, sapo, publishDate, detailCmainHtml, videoUrl, detailHistory, relatedItemsHtml, detailTr } = response.data;
+                const response = await axios.get(`http://localhost:3002/scrape?url=${encodeURIComponent(url)}`);
+                const { title, author, sapo, publishDate, detailCmainHtml, videoUrl } = response.data;
 
                 setArticleTitle(title || 'Untitled Article');
                 setArticleAuthor(author || 'Anonymous');
@@ -75,7 +68,7 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
         };
 
         fetchArticle();
-    }, [articleUrl]);
+    }, [url]); // Thêm articleUrl vào dependencies để useEffect chạy lại khi articleUrl thay đổi
 
     if (loading) {
         return <p>Loading...</p>;
@@ -86,8 +79,9 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
     }
 
     return (
+        <>
         <div className="article-detail">
-            <h1><a href={articleUrl} target="_blank" rel="noopener noreferrer">{articleTitle}</a></h1>
+            <h1><a href={url} target="_blank" rel="noopener noreferrer">{articleTitle}</a></h1>
             <p><strong>{articleAuthor}</strong></p>
             <p><strong>{articleSapo}</strong></p>
             <p><strong>{articlePublishDate}</strong></p>
@@ -108,6 +102,7 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
                 <div className="detail__related" dangerouslySetInnerHTML={{ __html: articleRelatedItemsHtml }}></div>
             </div>
         </div>
+        </>
     );
 };
 
@@ -118,10 +113,6 @@ ArticleDetail.defaultProps = {
     publishDate: '',
     detailCmainHtml: '',
     videoUrl: '',
-    articleUrl: 'https://nld.com.vn/diem-nong-xung-dot-ngay-9-7-nga-dung-chien-thuat-ten-lua-moi-ukraine-nhan-hang-nong-tu-anh-196240709072409048.htm',
-    detailHistory: '',
-    relatedItemsHtml: '',
-    detailTr: ''
 };
 
 export default ArticleDetail;
