@@ -5,12 +5,20 @@ import Header from "./component/Header";
 import Footer from "./component/Footer";
 import "./css/App.css";
 
+interface RelatedItem {
+    relatedTitle: string;
+    relatedLink: string;
+    relatedSapo: string;
+    relatedImgSrc: string;
+}
+
 interface ArticleDetailProps {
     title?: string;
     author?: string;
     sapo?: string;
     publishDate?: string;
     detailCmainHtml?: string;
+    detailHistory?: string;
     videoUrl?: string;
 }
 
@@ -21,6 +29,9 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publ
     const [articlePublishDate, setArticlePublishDate] = useState(publishDate || '');
     const [articleDetailCmainHtml, setArticleDetailCmainHtml] = useState(detailCmainHtml || '');
     const [articleVideoUrl, setArticleVideoUrl] = useState(videoUrl || '');
+    const [articleDetailHistory, setDetailHistory] = useState(detailHistory || '');
+    const [articleRelatedItemsHtml, setArticleRelatedItemsHtml] = useState(relatedItemsHtml || '');
+    const [articleDetailTr, setArticleDetailTr] = useState(detailTr || '');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -29,6 +40,12 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publ
 
     useEffect(() => {
         const fetchArticle = async () => {
+            if (!articleUrl) {
+                setError('Article URL is not provided');
+                setLoading(false);
+                return;
+            }
+
             try {
                 const response = await axios.get(`http://localhost:3002/scrape?url=${encodeURIComponent(url)}`);
                 const { title, author, sapo, publishDate, detailCmainHtml, videoUrl } = response.data;
@@ -39,7 +56,9 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publ
                 setArticlePublishDate(publishDate || '');
                 setArticleDetailCmainHtml(detailCmainHtml || '');
                 setArticleVideoUrl(videoUrl || '');
-
+                setDetailHistory(detailHistory || '');
+                setArticleRelatedItemsHtml(relatedItemsHtml || '');
+                setArticleDetailTr(detailTr || '');
             } catch (error) {
                 console.error('Error fetching the article:', error);
                 setError('Failed to fetch article');
@@ -69,12 +88,19 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ title, author, sapo, publ
             {articleVideoUrl && (
                 <div className="video-container">
                     <video controls>
-                        <source src={`https://${articleVideoUrl}`} type="video/mp4" />
+                        <source src={articleVideoUrl} type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
                 </div>
             )}
-            <div className="content" dangerouslySetInnerHTML={{ __html: articleDetailCmainHtml }}></div>
+            <div className="detail__cmain-main" dangerouslySetInnerHTML={{ __html: articleDetailCmainHtml }}></div>
+            <div className="detail__tr" dangerouslySetInnerHTML={{ __html: articleDetailTr }}></div>
+            <div>
+                <div className="detail__history" dangerouslySetInnerHTML={{ __html: articleDetailHistory }}></div>
+            </div>
+            <div>
+                <div className="detail__related" dangerouslySetInnerHTML={{ __html: articleRelatedItemsHtml }}></div>
+            </div>
         </div>
         </>
     );
