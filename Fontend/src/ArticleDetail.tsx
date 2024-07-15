@@ -116,10 +116,9 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
     return (
         <div className="article-detail">
             <h1>{articleTitle}</h1>
-            <p><strong>{articleAuthor}</strong></p>
             <p><strong>{articlePublishDate}</strong></p>
             <p><strong>{articleSapo}</strong></p>
-            <div className="detail__cmain-main" dangerouslySetInnerHTML={{ __html: articleDetailCmainHtml }}></div>
+            <div className="detail__cmain-main" dangerouslySetInnerHTML={{__html: articleDetailCmainHtml}}></div>
             {videoSrc && (
                 <div className="video-container">
                     <video
@@ -129,7 +128,7 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
                         src={`https://${videoSrc}`}
                         title="Video"
                     ></video>
-                    {videoCaption && <p style={{ textAlign: 'center' }}>{videoCaption}</p>}
+                    {videoCaption && <p style={{textAlign: 'center'}}>{videoCaption}</p>}
                 </div>
             )}
             {/*<div className="detail__tr" dangerouslySetInnerHTML={{ __html: articleDetailTr }}></div>*/}
@@ -137,6 +136,7 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({
             {/*{articleRelatedItemsHtml && (*/}
             {/*    <div className="detail__related" onClick={()=>handleRelatedLinkClick} dangerouslySetInnerHTML={{ __html: articleRelatedItemsHtml }}></div>*/}
             {/*)}*/}
+            <p style={{textAlign: 'right'}}><strong>{articleAuthor}</strong></p>
             <p>Đọc bài gốc tại <a href={currentArticleUrl} target="_blank" rel="noopener noreferrer"
                                   className="read-original">đây</a></p>
         </div>
