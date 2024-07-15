@@ -111,14 +111,32 @@ app.get('/scrape', async (req: Request, res: Response) => {
         const { data } = await axios.get(url as string);
         const $ = cheerio.load(data);
 
-        const title = $('h1.detail-title[data-role="title"]').text().trim();
-        const author = $('div.author-info p.name[data-role="author"]').text().trim();
+        const title = $('h1.detail-title[data-role="title"]').text().trim() ||
+            $('h1.video-title').text().trim();
+        let author = $('div.author-info p.name[data-role="author"]').text().trim();
+        if (!author) {
+            author = $('div.detail-author').text().trim();
+        }
+        if (!author) {
+            author = $('div.author-name').text().trim();
+        }
+
         const sapo = $('h2.detail-sapo[data-role="sapo"]').text().trim();
         const publishDate = $('div.detail-time [data-role="publishdate"]').text().trim();
-        const detailCmainHtml = $('div.detail-cmain').html();
+        let detailCmainHtml = $('div.detail-cmain').html();
+        if (!detailCmainHtml) {
+            detailCmainHtml = $('div.detail-content.afcbc-body.vceditor-content').html() || '';
+        }
+        if (!detailCmainHtml) {
+            detailCmainHtml = $('div.vPlayer').html() || '';
+        }
+
         const detailHistoryElement = $('div.detail__history').html();
         const detailHistory = detailHistoryElement || ' ';
-        const relatedItemsHtml = $('div.detail__related').html() || '';
+        let relatedItemsHtml = $('div.detail__related').html();
+        if (!relatedItemsHtml) {
+            relatedItemsHtml = $('div.detail__news-other').html() || '';
+        }
         const detailCmainSub = $('div.detail__cmain-sub').html() || '';
 
         const detailTr = $('div.detail__tr[data-marked-zoneid="nld_detail_tindocnhieu"]').html() || '';
