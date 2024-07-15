@@ -3,11 +3,15 @@ import axios from 'axios';
 import cheerio from 'cheerio';
 import cors from 'cors';
 import { parseString } from 'xml2js';
+import bodyParser from 'body-parser';
+
+const nodemailer = require('nodemailer'); // Use require instead of import
 
 const app = express();
 const PORT = process.env.PORT || 3002;
 
 app.use(cors());
+app.use(bodyParser.json());
 
 interface RssItem {
     title: string;
@@ -68,13 +72,13 @@ app.get('/rss', async (req: Request, res: Response) => {
     try {
         const rssUrl = req.query.url as string;
         if (!rssUrl) {
-            return res.status(400).json({error: 'URL is required'});
+            return res.status(400).json({ error: 'URL is required' });
         }
 
-        const {data} = await axios.get(rssUrl);
+        const { data } = await axios.get(rssUrl);
         parseString(data, (err: Error | null, result: any) => {
             if (err) {
-                return res.status(500).json({error: 'Error parsing RSS data'});
+                return res.status(500).json({ error: 'Error parsing RSS data' });
             }
 
             const items: RssItem[] = result.rss.channel[0].item.map((item: any) => {
@@ -96,7 +100,7 @@ app.get('/rss', async (req: Request, res: Response) => {
             res.json(items);
         });
     } catch (error) {
-        console.error(error);
+        console.error('Failed to fetch RSS data:', error);
         res.status(500).json({ error: 'Failed to fetch RSS data' });
     }
 });
@@ -165,13 +169,33 @@ app.get('/scrape', async (req: Request, res: Response) => {
     }
 });
 
-                res.json({title, author, sapo, publishDate, detailCmainHtml, videoUrl, videoData, videoCaption});
-            } catch (error) {
-                console.error('Error during scraping:', error);
-                res.status(500).json({error: 'Failed to scrape the data'});
-            }
-        });
+app.post('/feedback', async (req: Request, res: Response) => {
+    const { name, content } = req.body;
 
-        app.listen(PORT, () => {
-            console.log(`Server is running on port ${PORT}`);
-        });
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'vietpha157@gmail.com',
+            pass: 'mauy vbfp aqti ctre',
+        },
+    });
+
+    const mailOptions = {
+        from: 'vietpha157@gmail.com',
+        to: '21130467@st.hcmuaf.edu.vn', // Fixed typo in email address
+        subject: 'Phản hồi người dùng',
+        text: `Tên: ${name}\nPhản hồi: ${content}`, // Changed to use backticks for template string
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        res.status(200).json({ message: 'Phản hồi thành công' });
+    } catch (error) {
+        console.error('Error sending feedback:', error);
+        res.status(500).json({ error: 'Phản hồi thất bại' });
+    }
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
