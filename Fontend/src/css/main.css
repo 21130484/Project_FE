@@ -1,21 +1,23 @@
+
 :root{
   --black-color:#000;
   --white-color:#fff;
   --text-color:#454545;
   --title-color: #292929;
 }
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
   list-style-type: none;
+
   font-family: Inter sans-serif;
   font-family: Roboto sans-serif;
   font-family: Merriweather sans-serif;
   color: #454545;
   font-size: 14px;
+
   line-height: 150%;
 }
 
@@ -23,6 +25,42 @@
   margin: 0 auto;
   width: 1200px;
   max-width: 100%;
+}
+
+body {
+  font-family: Inter;
+  color: #454545;
+  font-size: 14px;
+  line-height: 150%;
+  background-color: #fff;
+  -webkit-animation-duration: 0.1s;
+  -webkit-animation-name: fontfix;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-delay: 0.1s;
+  -webkit-tap-highlight-color: transparent;
+  margin: 0;
+  min-width: 1232px;
+}
+
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+#backToTop {
+  background-color: red;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 30px;
+  position: fixed;
+  right: 50px;
+  z-index: 1000;
+  bottom: 50px;
+  border-radius: 50%;
+  text-align: center;
+  padding: 2px;
 }
 
 /*# sourceMappingURL=main.css.map */
